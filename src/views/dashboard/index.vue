@@ -5,7 +5,7 @@
     <el-row :gutter="32">
       
       <el-col :xs="24" :sm="24" :lg="8">
-        <h6> 총지출 : 320,000</h6>
+       
         <div class="chart-wrapper">
           <pie-chart />
         </div>
