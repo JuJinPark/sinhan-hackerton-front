@@ -9,17 +9,17 @@
         <div slot="header" class="clearfix">
           <el-button style="float: right; padding: 3px 0" type="text">가족초대하기</el-button>
         </div>
-        <div v-for="o in 4" :key="o" class="text item">
-          <div v-if="gender==='man'">
+        <div v-for="o in familyBudget" :key="o.userId" class="text item">
+          <div v-if="o.gender==='man'">
             <img width="50px" src='@/assets/img/boy.png'>
           </div>
           <div v-else>
             <img width="50px" src='@/assets/img/girl.png'>
           </div>
           <el-card class="box-toadyMoney">
-            <h3>하루 예산 50,000</h3>
-            <h3>오늘 쓴 돈 35,000</h3>
-            <el-progress :percentage="45" :format="format"></el-progress>
+            <h3>하루 예산 {{o.budget}}</h3>
+            <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
+            <el-progress :percentage="calucatePercentage(o.budget,o.totalExpense)" :format="format"></el-progress>
           </el-card>
         </div>
       </el-card>
@@ -40,15 +40,23 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   computed: {
-    ...mapGetters([
-      'name'
+      ...mapGetters([
+      'familyBudget',
+     
     ])
   },
   methods: {
       format(percentage) {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
+      },
+      calucatePercentage(totalBudget,totalExpense){
+        return (totalExpense/totalBudget)*100;
       }
-    }
+    },
+  mounted() {
+
+ this.$store.dispatch('homeTab/getFamilyBuget')
+  }
 };
 </script>
 
