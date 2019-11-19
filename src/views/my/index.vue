@@ -19,7 +19,7 @@
 
 <el-row :gutter="23" class="container">
   <el-col :span="10">
-    <div class="grid-content bg-purple">
+    <div style="padding-top: 10px;" class="grid-content bg-purple">
     
     <div>
       <div style="display:inline-block;"> 
@@ -49,7 +49,6 @@
           <el-card class="box-card">
       <div slot="header" class="clearfix">
           <span>Card name</span>
-            
       </div>
     <div v-for="o in 4" :key="o" class="text item">
           {{'List item ' + o }}
@@ -60,16 +59,12 @@
     </el-col>
     
   <el-col :span="14">
-    <div class="grid-content bg-purple">
+    <div style="padding-top: 19px;" class="grid-content bg-purple">
       <img src="@/assets/img/calendar.png">
     </div>
     </el-col>
 </el-row>
-
-
     </div>
-
-    
 
 </template>
 
@@ -118,14 +113,13 @@ export default {
 // }
 
 .editor-container{
-  
+
   margin-bottom: 30px;
 }
 .tag-title{
   margin-bottom: 5px;
 }
-  .grid-content {
-
+.grid-content {
     padding-left: 49px;
     padding-right: 41px;
     padding-top: 96px;

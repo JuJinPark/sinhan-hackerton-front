@@ -7,7 +7,7 @@
       </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <el-button style="float: right; padding: 3px 0" type="text">가족초대하기</el-button>
+          <el-button type="text" @click="open">가족초대하기</el-button>
         </div>
         <div v-for="o in familyBudget" :key="o.userId" class="text item">
           <div v-if="o.gender==='man'">
@@ -20,6 +20,7 @@
             <h3>하루 예산 {{o.budget}}</h3>
             <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
             <el-progress :percentage="calucatePercentage(o.budget,o.totalExpense)" :format="format"></el-progress>
+
           </el-card>
         </div>
       </el-card>
@@ -35,8 +36,8 @@
 </template>
 
 <script>
-
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'Home',
   computed: {
@@ -49,6 +50,7 @@ export default {
       format(percentage) {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
+<<<<<<< HEAD
       calucatePercentage(totalBudget,totalExpense){
         return (totalExpense/totalBudget)*100;
       }
@@ -57,6 +59,27 @@ export default {
 
  this.$store.dispatch('homeTab/getFamilyBuget')
   }
+=======
+      open() {
+        this.$prompt('Please input your family ID', '가족초대하기', {
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '초대가족 ID' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info'
+          });       
+        });
+      }
+    },
+    data:{
+      num : 1000
+    }
+>>>>>>> 382bf770cb086328a06d821d7ffcb2f4ed389c7d
 };
 </script>
 
