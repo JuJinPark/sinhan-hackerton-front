@@ -3,23 +3,22 @@
     <el-row :gutter="23" class="container">
     <el-col :span="10">
       <div>
-        <h1>맴버구성원</h1>
+         <img width="120px" src='@/assets/img/member.png'>
       </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>우리가족구성원</span>
           <el-button style="float: right; padding: 3px 0" type="text">가족초대하기</el-button>
         </div>
         <div v-for="o in 4" :key="o" class="text item">
           <div v-if="gender==='man'">
             <img width="50px" src='@/assets/img/boy.png'>
           </div>
-           <div v-else>
+          <div v-else>
             <img width="50px" src='@/assets/img/girl.png'>
           </div>
           <el-card class="box-toadyMoney">
-            <h3>하루예산 50000</h3>
-            <h3>오늘 쓴 돈 35000</h3>
+            <h3>하루 예산 50,000</h3>
+            <h3>오늘 쓴 돈 35,000</h3>
             <el-progress :percentage="45" :format="format"></el-progress>
           </el-card>
         </div>

@@ -22,8 +22,8 @@
     <div class="grid-content bg-purple">
     
     <div>
-      <div style="display:inline-block;">
-        <h2>오늘</h2>
+      <div style="display:inline-block;"> 
+      <img src="@/assets/img/today.png">
         <!-- <el-tag class="tag-title" effect="plain" size="medium">
        오늘
       </el-tag> -->
@@ -33,7 +33,7 @@
       </div>
 
       <div>
-      <h2>소비</h2>
+      <img style="width: 100px;" src="@/assets/img/sobi.png">
 
     <el-card class="box-card">
       <div slot="header" class="clearfix">
@@ -44,7 +44,7 @@
           {{'List item ' + o }}
     </div>
     </el-card>
-      <h2>자산</h2>
+      <img style="width: 100px;" src="@/assets/img/jasan.png">
       </div>
           <el-card class="box-card">
       <div slot="header" class="clearfix">
@@ -61,10 +61,7 @@
     
   <el-col :span="14">
     <div class="grid-content bg-purple">
-    <h2>달력</h2>
-    
-    
-    
+      <img src="@/assets/img/calendar.png">
     </div>
     </el-col>
 </el-row>
