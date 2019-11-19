@@ -15,7 +15,7 @@
             <img width="50px" src='@/assets/img/boy.png'>
           </div>
            <div v-else>
-            <img width="50px" src='@/assets/img/girl.png'>이수은
+            <img width="50px" src='@/assets/img/girl.png'>
           </div>
           <el-card class="box-toadyMoney">
             <h3>하루예산 50000</h3>
