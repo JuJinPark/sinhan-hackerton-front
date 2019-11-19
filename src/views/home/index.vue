@@ -20,7 +20,6 @@
             <h3>하루 예산 {{o.budget}}</h3>
             <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
             <el-progress :percentage="calucatePercentage(o.budget,o.totalExpense)" :format="format"></el-progress>
-
           </el-card>
         </div>
       </el-card>
@@ -50,17 +49,10 @@ export default {
       format(percentage) {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
-<<<<<<< HEAD
       calucatePercentage(totalBudget,totalExpense){
         return (totalExpense/totalBudget)*100;
-      }
-    },
-  mounted() {
-
- this.$store.dispatch('homeTab/getFamilyBuget')
-  }
-=======
-      open() {
+      },
+     open() {
         this.$prompt('Please input your family ID', '가족초대하기', {
           confirmButtonText: 'OK',
           cancelButtonText: 'Cancel'
@@ -76,10 +68,12 @@ export default {
         });
       }
     },
-    data:{
-      num : 1000
-    }
->>>>>>> 382bf770cb086328a06d821d7ffcb2f4ed389c7d
+  mounted() {
+
+ this.$store.dispatch('homeTab/getFamilyBuget')
+  }
+ 
+  
 };
 </script>
 
