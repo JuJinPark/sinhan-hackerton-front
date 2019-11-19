@@ -7,7 +7,7 @@
       </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <el-button style="float: right; padding: 3px 0" type="text">가족초대하기</el-button>
+          <el-button type="text" @click="open">가족초대하기</el-button>
         </div>
         <div v-for="o in 4" :key="o" class="text item">
           <div v-if="gender==='man'">
@@ -17,9 +17,9 @@
             <img width="50px" src='@/assets/img/girl.png'>
           </div>
           <el-card class="box-toadyMoney">
-            <h3>하루 예산 50,000</h3>
+            <h3>하루 예산 {{num}}</h3>
             <h3>오늘 쓴 돈 35,000</h3>
-            <el-progress :percentage="45" :format="format"></el-progress>
+            <el-progress :percentage="100" :format="format"></el-progress>
           </el-card>
         </div>
       </el-card>
@@ -35,8 +35,8 @@
 </template>
 
 <script>
-
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'Home',
   computed: {
@@ -47,7 +47,25 @@ export default {
   methods: {
       format(percentage) {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
+      },
+      open() {
+        this.$prompt('Please input your family ID', '가족초대하기', {
+          confirmButtonText: 'OK',
+          cancelButtonText: 'Cancel'
+        }).then(({ value }) => {
+          this.$message({
+            type: 'success',
+            message: '초대가족 ID' + value
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info'
+          });       
+        });
       }
+    },
+    data:{
+      num : 1000
     }
 };
 </script>
