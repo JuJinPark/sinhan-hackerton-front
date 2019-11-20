@@ -13,7 +13,7 @@
           <div v-if="o.gender==='man'">
             <img width="50px" src='@/assets/img/boy.png'>
           </div>
-          <div v-else>
+          <div  v-else>
             <img width="50px" src='@/assets/img/girl.png'>
           </div>
           <el-card class="box-toadyMoney">
@@ -29,9 +29,12 @@
         <div>
           <h2>채팅창들어갈 곳</h2>
           <div v-for="o in chatMessage" :key='o.userid'>
-            <div v-if="o.gender==='man'"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.content}}</h5></div>
-            <div v-else><img size="50px" src="@/assets/img/girl.png"><h5>{{o.content}}</h5></div>
-         
+            <div style="display: flex;" v-if="o.gender==='man'"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.userName}} -> {{o.content}}</h5></div>
+            <div style="display: flex;" v-else><img size="50px" src="@/assets/img/girl.png"><h5>{{o.userName}} ->{{o.content}}</h5></div>
+          </div>
+          <div style="display:flex;">
+            <el-input placeholder="Please send Message" v-model="input"></el-input>
+            <el-button type="info" >send</el-button>
           </div>
         </div>
       </el-col>
@@ -82,7 +85,11 @@ export default {
     this.$store.dispatch('homeTab/getFamilyChat');
 
   },
-  
+   data() {
+    return {
+      input: ''
+    }
+  }
 };
 </script>
 
