@@ -1,10 +1,10 @@
 
-
+//글로벌 변수 
 const state = {
 familyBudget:[],
 
 }
-
+//<!--위에있는 데이터를 글로벌변수 -->
 const mutations = {
 
   UPDATE_FAMILYBUDGET: (state, familyBudget) => {
@@ -12,7 +12,7 @@ const mutations = {
   }
 
 }
-
+//액션을 통해 커밋으로 뮤테이션에 하는것에 의해서 값을 변경시킨다. 
 const actions = {
   getFamilyBuget({ commit },roomId) {
   

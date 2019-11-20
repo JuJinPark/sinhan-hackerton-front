@@ -4,6 +4,7 @@ const getters = {
   token: state => state.user.token,
   avatar: state => state.user.avatar,
   name: state => state.user.name,
-  familyBudget: state => state.homeTab.familyBudget
+  familyBudget: state => state.homeTab.familyBudget,
+  chatMessage: state => state.homechat.chatMessage
 }
 export default getters

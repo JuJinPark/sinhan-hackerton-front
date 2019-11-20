@@ -2,73 +2,70 @@
   <!-- <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div> -->
 
-        <div> 
+  <div> 
+    <el-row :gutter="23" class="container">
+       <el-col :span="10">
+         <div style="padding-top: 10px;" class="grid-content bg-purple">
+          
+         <div>
+          <div style="display:inline-block;"> 
+          <img src="@/assets/img/today.png">
+          </div>    
 
-          <!-- <div :style="{backgroundImage: 'url(https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png)' }" class="pan-thumb"></div> -->
+          <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
+          </div>
 
-         <!-- <div class="editor-container">
-      <el-tag class="tag-title" effect="plain" size="medium">
-       오늘
-      </el-tag>
-      </div>
-      <el-row >
-       <el-col :span="6"><div class="grid-content bg-purple"><span>{{expense}}원</span></div></el-col>
-    
-    </el-row> -->
+          <div>
+          <img style="width: 100px;" src="@/assets/img/sobi.png">
 
-
-<el-row :gutter="23" class="container">
-  <el-col :span="10">
-    <div style="padding-top: 10px;" class="grid-content bg-purple">
-    
-    <div>
-      <div style="display:inline-block;"> 
-      <img src="@/assets/img/today.png">
-        <!-- <el-tag class="tag-title" effect="plain" size="medium">
-       오늘
-      </el-tag> -->
-      </div>    
-
-       <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
-      </div>
-
-      <div>
-      <img style="width: 100px;" src="@/assets/img/sobi.png">
-
-    <el-card class="box-card">
-      <div slot="header" class="clearfix">
-          <span>Card name</span>
-            
-      </div>
-    <div v-for="o in 4" :key="o" class="text item">
-          {{'List item ' + o }}
-    </div>
-    </el-card>
-      <img style="width: 100px;" src="@/assets/img/jasan.png">
-      </div>
           <el-card class="box-card">
-      <div slot="header" class="clearfix">
-          <span>Card name</span>
-      </div>
-    <div v-for="o in 4" :key="o" class="text item">
-          {{'List item ' + o }}
-    </div>
-    </el-card>
+            <div slot="header" class="clearfix">
+                <div v-bind="MyTab"> {{MyTab.otalExpense}}</div>
+            </div>
+          <div v-for="o in 4" :key="o" class="text item">
+                {{'List item ' + o }}
+          </div>
+          </el-card>
+            <img style="width: 100px;" src="@/assets/img/jasan.png">
+            </div>
+                <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <span>Card name</span>
+            </div>
+          <div v-for="o in MyTab.detail" :key="o.userid" class="text item">
+                {{'List item ' + o }}
+          </div>
+          </el-card>
 
-    </div>
-    </el-col>
-    
-  <el-col :span="14">
-    <div style="padding-top: 19px;" class="grid-content bg-purple">
-      <img src="@/assets/img/calendar.png">
-    </div>
-    </el-col>
-</el-row>
+          </div>
+      </el-col>
+          
+      <el-col :span="14">
+          <div style="padding-top: 19px;" class="grid-content bg-purple">
+            <img src="@/assets/img/calendar.png">
+          </div>
+          </el-col>
+      </el-row>
     </div>
 
 </template>
 
 <script>
+
+// var MyTab ={
+//     totalExpense : '10000' ,
+//         expensePerDay : 
+//         { 
+//           date :'12/13',
+//           amount :"1000",
+//           detail: 
+//           { 
+//             time :'12/13',
+//             vendor :'청국장',
+//             amount: '500'
+//           }
+//         }
+// }
 import { mapGetters } from 'vuex'
 // import VueSplit from 'vue-split-panel'
 
@@ -77,13 +74,25 @@ export default {
   // components: { VueSplit },
   computed: {
     ...mapGetters([
-      'name'
+      //'MyTab'
     ])
   },
    data() {
     return {
-      squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-      expense: 7500  
+      MyTab : {
+        totalExpense :10000 ,
+        expensePerDay : 
+        { 
+          date:'12/14',
+          amount:'100',
+          detail:
+          { 
+            time:'12/13',
+            vendor:'청국장집',
+            amoun:'500'
+          }
+        }
+      }  
     };
    }
 }
