@@ -17,9 +17,9 @@
             <img width="50px" src='@/assets/img/girl.png'>
           </div>
           <el-card class="box-toadyMoney">
-            <h3>하루 예산 {{o.todaybudget}}</h3>
-            <h3>오늘 쓴 돈 {{o.todayExpense}}</h3>
-            <el-progress :percentage="calucatePercentage(o.todaybudget, o.todayExpense)" :format="format"></el-progress>
+            <h3>하루 예산 {{o.budget}}</h3>
+            <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
+            <el-progress :percentage=calucatePercentage(o.budget,o.totalExpense) :format="format"></el-progress>
           </el-card>
         </div>
       </el-card>
@@ -29,7 +29,7 @@
         <div>
           <h2>채팅창들어갈 곳</h2>
           <div v-for="o in chatMessage" :key='o.userid'>
-            <div v-if="o.gender===man"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.content}}</h5></div>
+            <div v-if="o.gender==='man'"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.content}}</h5></div>
             <div v-else><img size="50px" src="@/assets/img/girl.png"><h5>{{o.content}}</h5></div>
          
           </div>
@@ -46,7 +46,7 @@ export default {
   name: 'Home',
   computed: {
       ...mapGetters([
-        //'familyBudget',
+      'familyBudget',
       'chatMessage'
     ])
   },
@@ -55,7 +55,10 @@ export default {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
-        return (totalExpense/totalBudget)*100;
+        console.log("들어옴")
+        const value = (totalExpense/totalBudget)*100
+        console.log(value)
+        return value;
       },
      open() {
         this.$prompt('Please input your family ID', '가족초대하기', {
@@ -75,9 +78,11 @@ export default {
     },
   mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
-    //this.$store.dispatch('homeTab/getFamilyBuget');
-    this.$store.dispatch('homechat/getFamilyChat');
-  }
+    this.$store.dispatch('homeTab/getFamilyBuget');
+    this.$store.dispatch('homeTab/getFamilyChat');
+
+  },
+  
 };
 </script>
 

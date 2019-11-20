@@ -5,7 +5,7 @@ import app from './modules/app'
 import settings from './modules/settings'
 import user from './modules/user'
 import homeTab from './modules/homeTab'
-import homechat from './modules/homechat'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -13,8 +13,7 @@ const store = new Vuex.Store({
     app,
     settings,
     user,
-    homeTab,
-    homechat
+    homeTab
   },
   getters
   
