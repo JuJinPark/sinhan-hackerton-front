@@ -10,11 +10,13 @@
           <el-button type="text" @click="open">가족초대하기</el-button>
         </div>
         <div v-for="o in familyBudget" :key="o.userId" class="text item">
-          <div v-if="o.gender==='man'">
+          <div style="display: inline-flex;" v-if="o.gender==='man'">
             <img width="50px" src='@/assets/img/boy.png'>
+            <h3>{{o.userName}}</h3>
           </div>
-          <div  v-else>
+          <div style="display: inline-flex;" v-else>
             <img width="50px" src='@/assets/img/girl.png'>
+            <h3>{{o.userName}}</h3>
           </div>
           <el-card class="box-toadyMoney">
             <h3>하루 예산 {{o.budget}}</h3>
@@ -24,13 +26,12 @@
         </div>
       </el-card>
       </el-col>
-      
       <el-col :span="13">
         <div>
           <h2>채팅창들어갈 곳</h2>
-          <div v-for="o in chatMessage" :key='o.userid'>
-            <div style="display: flex;" v-if="o.gender==='man'"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.userName}} -> {{o.content}}</h5></div>
-            <div style="display: flex;" v-else><img size="50px" src="@/assets/img/girl.png"><h5>{{o.userName}} ->{{o.content}}</h5></div>
+          <div  v-for="o in chatMessage" :key='o.userid'>
+              <div style="display: flex;" v-if="o.gender==='man'"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.userName}} -> {{o.content}}</h5></div>
+              <div style="display: flex;" v-else><img size="50px" src="@/assets/img/girl.png"><h5>{{o.userName}} ->{{o.content}}</h5></div>
           </div>
           <div style="display:flex;">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
