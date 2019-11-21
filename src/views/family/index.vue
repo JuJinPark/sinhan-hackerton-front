@@ -14,10 +14,10 @@
       <img style="width: 100px;" src="@/assets/img/sobi.png">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <div style="text-align: end"><span >70,000</span> </div>   
+          <div style="text-align: end"><span >Total : {{familyTab.totalExpense}}</span> </div>   
         </div>
     <div v-for="o in 4" :key="o" class="text item">
-          {{'List item ' + o }}
+          {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>
     </div>
     </el-card>
       <img style="width: 100px;" src="@/assets/img/jasan.png">
@@ -26,8 +26,9 @@
       <div slot="header" class="clearfix">
            <div style="text-align: end"><span >3,500,000</span> </div>        
       </div>
-      <div style="display: flex;" v-for="o in 4" :key="o" class="text item">
-            {{'List item ' + o }} <el-button type="primary" icon="el-icon-chat">내역 가족에게 보내기</el-button>
+      <div  v-for="o in 4" :key="o" class="text item">
+            {{'List item ' + o }} 
+            <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>
       </div>
     </el-card>
     </div>
@@ -67,6 +68,18 @@ export default {
                 "date":'12/34',
                 "amount":50000,
                 "list":[ 
+                    { 
+                      "userId":'user',
+                      "userName":'엄마',
+                      "lastTransactionTime":'444', 
+                      "amount":1000
+                    },
+                    { 
+                      "userId":'user',
+                      "userName":'엄마',
+                      "lastTransactionTime":'444', 
+                      "amount":1000
+                    },
                     { 
                       "userId":'user',
                       "userName":'엄마',

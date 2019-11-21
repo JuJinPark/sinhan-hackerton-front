@@ -11,11 +11,11 @@
         </div>
         <div v-for="o in familyBudget" :key="o.userId" class="text item">
           <div style="display: inline-flex;" v-if="o.gender==='man'">
-            <img width="50px" src='@/assets/img/boy.png'>
+            <img width="50px" src='@/assets/img/man.png'>
             <h3>{{o.userName}}</h3>
           </div>
           <div style="display: inline-flex;" v-else>
-            <img width="50px" src='@/assets/img/girl.png'>
+            <img width="50px" src='@/assets/img/woman.png'>
             <h3>{{o.userName}}</h3>
           </div>
           <el-card class="box-toadyMoney">
@@ -29,9 +29,9 @@
       <el-col :span="13">
         <div>
           <h2>채팅창들어갈 곳</h2>
-          <div  v-for="o in chatMessage" :key='o.userid'>
-              <div style="display: flex;" v-if="o.gender==='man'"><img size="50px" src="@/assets/img/boy.png"><h5>{{o.userName}} -> {{o.content}}</h5></div>
-              <div style="display: flex;" v-else><img size="50px" src="@/assets/img/girl.png"><h5>{{o.userName}} ->{{o.content}}</h5></div>
+          <div  v-for="o in chatMessage" :key='o.userid'>  
+          <div style="display: flex;" ><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')">
+          <h5>{{o.userName}} -> {{o.content}}</h5></div>
           </div>
           <div style="display:flex;">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
@@ -59,11 +59,10 @@ export default {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
-        console.log("들어옴")
         const value = (totalExpense/totalBudget)*100
-        console.log(value)
         return value;
       },
+
      open() {
         this.$prompt('Please input your family ID', '가족초대하기', {
           confirmButtonText: 'OK',
