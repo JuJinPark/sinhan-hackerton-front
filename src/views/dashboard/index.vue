@@ -6,7 +6,7 @@
       <el-col :span='10'>
         <div style="padding-left: 103px;padding-top: 23px;">
           <img src="@/assets/img/categoryTitle.png" style="width: 150px;"></div>
-        <div    style="padding-left: 32px;   padding-top: 35px;" class="chart-wrapper">
+        <div style="padding-left: 32px;   padding-top: 35px;" class="chart-wrapper">
          <pie-chart />
         </div>
       </el-col>
