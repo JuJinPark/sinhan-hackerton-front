@@ -9,6 +9,12 @@ import resize from './mixins/resize'
 
 export default {
   mixins: [resize],
+  //   computed: {
+  //     ...mapGetters([
+  //     'familyBudget',
+  //     'chatMessage'
+  //   ])
+  // },
   props: {
     className: {
       type: String,
@@ -25,12 +31,13 @@ export default {
   },
   data(){
     return {
-      chart: null
+      chart: null,
+      status: "my"
     }
   },
   mounted() {
     this.$nextTick(() => {
-      this.initChart()
+      this.initChart(this.status)
     })
   },
   beforeDestroy() {
@@ -73,7 +80,8 @@ export default {
           }
         ]
       })
-    }
+    },
+
   }
 }
 </script>
