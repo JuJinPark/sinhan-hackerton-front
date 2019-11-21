@@ -42,6 +42,7 @@
       <el-col :span="14">
           <div style="padding-top: 19px;" class="grid-content bg-purple">
             <img src="@/assets/img/calendar.png">
+          
           </div>
           </el-col>
       </el-row>
@@ -52,11 +53,9 @@
 <script>
 
 import { mapGetters } from 'vuex'
-// import VueSplit from 'vue-split-panel'
 
 export default {
   name: 'My',
-  // components: { VueSplit },
   computed: {
     ...mapGetters([
     ])

@@ -26,15 +26,18 @@
       <div slot="header" class="clearfix">
            <div style="text-align: end"><span >3,500,000</span> </div>        
       </div>
-      <div v-for="o in 4" :key="o" class="text item">
-            {{'List item ' + o }}
+      <div style="display: flex;" v-for="o in 4" :key="o" class="text item">
+            {{'List item ' + o }} <el-button type="primary" icon="el-icon-chat">내역 가족에게 보내기</el-button>
       </div>
     </el-card>
     </div>
     </el-col>
     <el-col :span="14">
-      <div class="grid-content bg-purple">
+      <div class="grid-content bg-purple">  
         <img src="@/assets/img/calendar.png">
+        <el-switch v-model="value1" active-text='Family'
+          inactive-text="Only me" style="padding-bottom: 38px;">
+        </el-switch>
       </div>
     </el-col>
 </el-row>
@@ -52,7 +55,30 @@ export default {
     ...mapGetters([
       'name'
     ])
-  }
+  },
+  data() {
+      return {
+        value1: true,
+        familyTab :
+        {
+          "totalExpense":100000,
+          "expensePerDay":[ 
+              { 
+                "date":'12/34',
+                "amount":50000,
+                "list":[ 
+                    { 
+                      "userId":'user',
+                      "userName":'엄마',
+                      "lastTransactionTime":'444', 
+                      "amount":1000
+                    }
+                ]
+              }
+            ]
+          }
+      }
+    }
 }
 </script>
 
