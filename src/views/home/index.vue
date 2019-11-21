@@ -10,6 +10,7 @@
           <el-button type="text" @click="open">가족초대하기</el-button>
         </div>
         <div v-for="o in familyBudget" :key="o.userId" class="text item">
+<<<<<<< HEAD
           <div style="display: inline-flex;" v-if="o.gender==='man'">
             <img width="50px" src='@/assets/img/man.png'>
             <h3>{{o.userName}}</h3>
@@ -18,6 +19,9 @@
             <img width="50px" src='@/assets/img/woman.png'>
             <h3>{{o.userName}}</h3>
           </div>
+=======
+             <div style="display: inline-flex;"><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')"><h3>{{o.userName}}</h3></div>
+>>>>>>> ec64dced025a43bd1c3e7f9c4d1003345bed082a
           <el-card class="box-toadyMoney">
             <h3>하루 예산 {{o.budget}}</h3>
             <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
@@ -29,9 +33,14 @@
       <el-col :span="13">
         <div>
           <h2>채팅창들어갈 곳</h2>
+<<<<<<< HEAD
           <div  v-for="o in chatMessage" :key='o.userid'>  
           <div style="display: flex;" ><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')">
           <h5>{{o.userName}} -> {{o.content}}</h5></div>
+=======
+          <div  v-for="o in chatMessage" :key='o.userid'>
+              <div style="display: flex;"><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')"><h5>{{o.userName}} ->{{o.content}}</h5></div>
+>>>>>>> ec64dced025a43bd1c3e7f9c4d1003345bed082a
           </div>
           <div style="display:flex;">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
@@ -59,8 +68,14 @@ export default {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
+<<<<<<< HEAD
         const value = (totalExpense/totalBudget)*100
         return value;
+=======
+    
+       
+        return (totalExpense/totalBudget)*100;
+>>>>>>> ec64dced025a43bd1c3e7f9c4d1003345bed082a
       },
 
      open() {

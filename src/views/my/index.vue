@@ -20,19 +20,19 @@
 
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <div v-bind="MyTab"> {{MyTab.totalExpense}}</div>
+                <span> {{todayExpense.totalExpense}}</span>
             </div>
-          <div v-for="o in MyTab.expensePerDay.detail"  class="text item">
-            <div style='display: flex;'><h5>{{ o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
+          <div v-for="o in todayExpense.expensePerDay[0].detail" :key=o.time class="text item">
+            <div style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
           </div>
           </el-card>
             <img style="width: 100px;" src="@/assets/img/jasan.png">
             </div>
                 <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span>{{MyTabAsset.totalAsset}}</span>
+                <span>{{todayIncome.totalIncome}}</span>
             </div>
-          <div v-for="o in MyTabAsset.assetPerDay.details"  class="text item">
+          <div v-for="o in todayIncome.incomePerDay[0].detail"  :key=o.time  class="text item">
             <span style='display: flex;'><h5> {{o.vendor}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
           </div>
           </el-card>
@@ -41,10 +41,14 @@
           
       <el-col :span="14">
           <div style="padding-top: 19px;" class="grid-content bg-purple">
-            <img src="@/assets/img/calendar.png">
-          
+        
+            <img src="@/assets/img/calendar.png"> 
+     <v-calendar
+  :attributes='attributes'
+  />
           </div>
           </el-col>
+
       </el-row>
     </div>
 
@@ -58,59 +62,97 @@ export default {
   name: 'My',
   computed: {
     ...mapGetters([
-    ])
+    ]),
+
+        inputState() {
+      if (!this.selectedValue) {
+        return {
+          type: 'is-danger',
+          message: 'Date required.',
+        };
+      }
+      return {
+        type: 'is-primary',
+        message: '',
+      };
+    },
   },
    data() {
     return {
-      MyTab : {
+      todayExpense : {
         totalExpense :10000 ,
         expensePerDay : 
-        { 
-          date:'12/14',
-          amount:'1000',
+        [
+          { 
+          date:'2019-11-14',
+          amount:'1340',
           detail:[ { 
-            time:'12/13',
+            time:'2019-11-14:09:00:00',
             vendor:'보험료',
             amount:'400'
           },
            { 
-            time:'12/13',
+            time:'2019-11-14:10:00:00',
             vendor:'청국장집',
             amount:'300'
           },
            { 
-            time:'12/13',
+            time:'2019-11-14:11:00:00',
             vendor:'라면집',
             amount:'340'
           },
            { 
-            time:'12/13',
+            time:'2019-11-14:19:00:00',
             vendor:'청국장집',
             amount:'300'
-          } ]
+            } 
+          ]
         }
-      },
-      MyTabAsset : {
-        totalAsset:1000,
-        assetPerDay:
+        ]
+        } ,
+      todayIncome: {
+        totalIncome:10400,
+        incomePerDay:
+        [
         { 
-         details:[{ 
-            time:'12/13',
+          date:'2019-11-14',
+         amount: 10400,
+         detail:[{ 
+            time:'2019-11-14:09:00:00',
             vendor:'월급',
-            amount:'500'
+            amount:'5000'
           },
            { 
-            time:'12/13',
+            time:'2019-11-14:10:00:00',
             vendor:'엄마',
-            amount:'200'
+            amount:'2000'
           },
            { 
-            time:'12/13',
+            time:'2019-11-14:11:00:00',
             vendor:'친구점심더치페이',
             amount:'3400'
           }]
         }
+        ]
+      },
+      attributes: [
+      // This is a single attribute
+      {
+        // An optional key can be used for retrieving this attribute later,
+        // and will most likely be derived from your data object
+        // key: Any,
+        // Attribute type definitions
+        // highlight: true,  // Boolean, String, Object
+        // dot: true,        // Boolean, String, Object
+        // bar: true,        // Boolean, String, Object
+        content: 'red',   // Boolean, String, Object
+        dates: new Date(),
+        // You can optionally provide dates to exclude
+        excludeDates: null,
+        // Think of `order` like `z-index`
+        order: 0
       }
+    ]
     };
    }
 }
