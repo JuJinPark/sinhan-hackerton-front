@@ -20,23 +20,22 @@
 
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <div v-bind="MyTab"> {{MyTab.otalExpense}}</div>
+                <div v-bind="MyTab"> {{MyTab.totalExpense}}</div>
             </div>
-          <div v-for="o in 4" :key="o" class="text item">
-                {{'List item ' + o }}
+          <div v-for="o in MyTab.expensePerDay.detail"  class="text item">
+            <div style='display: flex;'><h5>{{ o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
           </div>
           </el-card>
             <img style="width: 100px;" src="@/assets/img/jasan.png">
             </div>
                 <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <span>Card name</span>
+                <span>{{MyTabAsset.totalAsset}}</span>
             </div>
-          <div v-for="o in MyTab.detail" :key="o.userid" class="text item">
-                {{'List item ' + o }}
+          <div v-for="o in MyTabAsset.assetPerDay.details"  class="text item">
+            <span style='display: flex;'><h5> {{o.vendor}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
           </div>
           </el-card>
-
           </div>
       </el-col>
           
@@ -52,20 +51,6 @@
 
 <script>
 
-// var MyTab ={
-//     totalExpense : '10000' ,
-//         expensePerDay : 
-//         { 
-//           date :'12/13',
-//           amount :"1000",
-//           detail: 
-//           { 
-//             time :'12/13',
-//             vendor :'청국장',
-//             amount: '500'
-//           }
-//         }
-// }
 import { mapGetters } from 'vuex'
 // import VueSplit from 'vue-split-panel'
 
@@ -74,7 +59,6 @@ export default {
   // components: { VueSplit },
   computed: {
     ...mapGetters([
-      //'MyTab'
     ])
   },
    data() {
@@ -84,15 +68,50 @@ export default {
         expensePerDay : 
         { 
           date:'12/14',
-          amount:'100',
-          detail:
-          { 
+          amount:'1000',
+          detail:[ { 
+            time:'12/13',
+            vendor:'보험료',
+            amount:'400'
+          },
+           { 
             time:'12/13',
             vendor:'청국장집',
-            amoun:'500'
-          }
+            amount:'300'
+          },
+           { 
+            time:'12/13',
+            vendor:'라면집',
+            amount:'340'
+          },
+           { 
+            time:'12/13',
+            vendor:'청국장집',
+            amount:'300'
+          } ]
         }
-      }  
+      },
+      MyTabAsset : {
+        totalAsset:1000,
+        assetPerDay:
+        { 
+         details:[{ 
+            time:'12/13',
+            vendor:'월급',
+            amount:'500'
+          },
+           { 
+            time:'12/13',
+            vendor:'엄마',
+            amount:'200'
+          },
+           { 
+            time:'12/13',
+            vendor:'친구점심더치페이',
+            amount:'3400'
+          }]
+        }
+      }
     };
    }
 }
