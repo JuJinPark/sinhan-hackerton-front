@@ -6,7 +6,7 @@
         <div class="grid-content bg-purple"> 
     <div>
     <div style="display:inline-block;">
-      <img style="padding-bottom:40px;padding-top:5px" src="@/assets/img/ico_my_title1.png">
+      <img  src="@/assets/img/ico_my_title1.png">
     </div>    
       <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
     </div>

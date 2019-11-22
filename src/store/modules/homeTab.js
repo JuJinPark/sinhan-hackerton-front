@@ -76,18 +76,19 @@ const actions = {
      response.data=[];
      console.log(response.data)
     response.data=[
-     { userId: 1,
+    {
+      userId: 1,
       userName: "나",
       content :"안녕하세요 가족재무채팅창입니다.",
       gender : "man",
       age : 16
     },
     {
-        userId: 2,
-        userName: "아빠",
-        content :"오늘 돈 좀 쓸게요.",
-        gender : "man",
-        age : 45
+      userId: 2,
+      userName: "아빠",
+      content :"오늘 돈 좀 쓸게요.",
+      gender : "man",
+      age : 45
     },
     {
       userId: 3,

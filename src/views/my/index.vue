@@ -9,14 +9,14 @@
           
          <div>
           <div style="display:inline-block;"> 
-          <img src="@/assets/img/today.png">
+           <img src="@/assets/img/ico_my_title1.png">
           </div>    
 
           <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
           </div>
 
           <div>
-          <img style="width: 100px;" src="@/assets/img/sobi.png">
+          <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
 
           <el-card class="box-card">
             <div slot="header" class="clearfix">
@@ -26,7 +26,7 @@
             <div style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
           </div>
           </el-card>
-            <img style="width: 100px;" src="@/assets/img/jasan.png">
+            <img style="padding-bottom:20px;padding-top:40px;" src="@/assets/img/ico_my_sub2.png">
             </div>
                 <el-card class="box-card">
             <div slot="header" class="clearfix">
@@ -40,16 +40,18 @@
       </el-col>
           
       <el-col :span="14">
-          <div style="padding-top: 19px;" class="grid-content bg-purple">
+          <div class="grid-content bg-purple">
         
-            <img src="@/assets/img/calendar.png"> 
+            <img style="padding-bottom:90px;"  src="@/assets/img/ico_my_title2.png"> 
             
               <el-checkbox label="지출" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
               <el-checkbox label="소비" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
              
-              <v-calendar is-expanded :attributes="getAttributes()"/>
+              <v-calendar is-expanded  :attributes="getAttributes()"/>
             </div>
+            <img style="width: 100%;;padding-top: 90px;" src="@/assets/img/banner_my.png">
           </el-col>
+
       </el-row>
     </div>
 
@@ -163,7 +165,7 @@ export default {
 .grid-content {
     padding-left: 49px;
     padding-right: 41px;
-    padding-top: 96px;
+    padding-top: 25px;
     // min-height: 36px;
   }
   //   .bg-purple {
