@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "apexcharts": "^3.10.1",
-    "axios": "0.18.1",
+    "axios": "^0.18.1",
     "basic-vue-chat": "^0.3.5",
     "echarts": "^4.5.0",
     "element-ui": "2.7.2",
