@@ -3,24 +3,25 @@
     <el-row :gutter="23" class="container">
       <el-col :span="10">
         <div style="padding-left: 25px;">
-         <img width="130px" style="padding-top: 15px;padding-bottom: 15px;" src='@/assets/img/member.png'>
+         <!-- <img width="130px" style="padding-top: 15px;padding-bottom: 15px;" src='@/assets/img/member.png'> -->
        </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <el-button type="primary" icon="el-icon-plus" 
-          style="float: right; background-color: #5b7fde;border-color: #5b7fde;">Invite home</el-button>
+          <img src="@/assets/img/ico_home_title.png">
+          <el-button @click="open2"  type="text" icon="el-icon-plus" 
+          style="float: right; background-color: #5b7fde;color: aliceblue;">invite Family</el-button>
+                
         </div>
-        <div   v-for="o in familyBudget" :key="o.userId" class="text item">
-          <div style="display: inline-flex;  background-color: #4f4d4d12;  padding-left: 12%;" class="profile" >
-            <div style="padding-top: 12%;" v-if="o.age>=20">
-              <img width="50px" :src="require('@/assets/img/'+o.gender+'2.png')">
+        <div style=" padding-left: 16%;"  v-for="o in familyBudget" :key="o.userId" class="text item">
+          <div style="display: inline-flex; background-color: #4f4d4d12;  padding-left: 8%;" class="profile" >
+            <div style="padding-top: 10%;    width: 100px;" v-if="o.age>=20">
+              <img width="52.14px" :src="require('@/assets/img/'+o.gender+'2.png')">
               <h3>{{o.userName}}</h3>
             </div>
-            <div style="padding-top: 12%;" v-else>
-              <img width="50px" :src="require('@/assets/img/'+o.gender+'.png')">
+            <div style="padding-top: 12%; width: 100px;" v-else>
+              <img width="52.14px" :src="require('@/assets/img/'+o.gender+'.png')">
               <h3>{{o.userName}}</h3>
-            </div>
-              
+            </div>   
             <el-card style="width: 242px;" class="box-toadyMoney">
               <div style="float: right;">
                 <h3>하루 예산 {{o.budget}}</h3>
@@ -41,7 +42,7 @@
 <!----------------------입력부분------------------------------------------------------------------------------------>  
 
           <el-card style="display: contents;" class="box-card">
-            <div  style="display: contents; padding-top:30px">
+            <div  style="display: flex; padding-top:30px">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
             <el-button style="background-color: #5b7fde" type="info" >send</el-button>
             </div>
@@ -51,19 +52,23 @@
           <el-card style="background-color: #f3f2f2;" class="box-card">
             <div v-for="o in chatMessage" :key="o.userId" class="text item"> 
              
-              <div v-if="o.age>=20">
-                  <img width="40px" :src="require('@/assets/img/'+o.gender+'2.png')">
+              <div style="    display: flex;" v-if="o.age>=20">
+                <span style="    display: contents;">                
+                  <img width="52.14px" :src="require('@/assets/img/'+o.gender+'2.png')">
                   <h5>{{o.userName}}</h5>
-                  {{o.content}}
+                </span>  
+                  <span style="padding-left: 11%;padding-top: 3%;">{{o.content}}</span>
               </div>
-              <div  v-else>
-                 <img width="40px" :src="require('@/assets/img/'+o.gender+'.png')">
-                 <h5>{{o.userName}}</h5>
-                 {{o.content}}  
+              <div style="    display: flex;"  v-else>
+                <span style="    display: contents;">
+                  <img width="52.14px" :src="require('@/assets/img/'+o.gender+'.png')">  
+                  <h5>{{o.userName}}</h5>
+                </span>
+                 <span  style="padding-left: 11%;padding-top: 3%;"> {{o.content}}</span>  
               </div>
             </div>
           </el-card>
-          <img style="width: 600px;padding-top: 50px;" src="@/assets/img/show_1.png">  
+          <img style="width: 100%;;padding-top: 50px;" src="@/assets/img/show_1.png">  
       </el-col>
     </el-row>
   </div>
@@ -77,11 +82,32 @@ export default {
   computed: {
       ...mapGetters([
       'familyBudget',
-      'chatMessage'
+      'chatMessage',
+      'userID'
     ])
   },
   methods: {
-      format(percentage) {
+      open2() {
+          this.$prompt('Please input your Family ID', 'Tip', {
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Cancel',
+            inputErrorMessage: 'Invalid userID'
+          }).then(({ value }) => {
+            this.$message({
+              type: 'success',
+              message: "초대 성공"
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '초대 실패'
+            });       
+          });
+        },
+      popup(){
+        alert(ddd);
+      }
+      ,format(percentage) {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
@@ -111,6 +137,8 @@ export default {
     this.$store.dispatch('homeTab/getFamilyChat');
 
   },
+
+  
    data() {
     return {
       input: ''
