@@ -43,12 +43,13 @@
           <div style="padding-top: 19px;" class="grid-content bg-purple">
         
             <img src="@/assets/img/calendar.png"> 
-     <v-calendar
-  :attributes='attributes'
-  />
+             <el-checkbox-group v-model="checkList">
+              <el-checkbox 	label="지출"></el-checkbox>
+              <el-checkbox label="소비"></el-checkbox>
+             </el-checkbox-group> 
+              <v-calendar :attributes='attributes' />
           </div>
           </el-col>
-
       </el-row>
     </div>
 
@@ -135,6 +136,8 @@ export default {
         }
         ]
       },
+       checkList: ['소비','지출']
+       ,
       attributes: [
       // This is a single attribute
       {
