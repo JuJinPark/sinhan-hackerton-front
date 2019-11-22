@@ -1,59 +1,59 @@
 <template>
   <div>
     <el-row :gutter="23" class="container">
-    <el-col :span="10">
+    <el-col :span="9">
       <div>
          <img width="120px" src='@/assets/img/member.png'>
       </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <el-button type="text" @click="open">가족초대하기</el-button>
+          
+          <el-button type="primary" icon="el-icon-plus" style="float: right; background-color: #5b7fde;border-color: #5b7fde;">Invite home</el-button>
+
         </div>
-        <div v-for="o in familyBudget" :key="o.userId" class="text item">
-<<<<<<< HEAD
-          <div style="display: inline-flex;" v-if="o.gender==='man'">
-            <img width="50px" src='@/assets/img/man.png'>
-            <h3>{{o.userName}}</h3>
+        <div   v-for="o in familyBudget" :key="o.userId" class="text item">
+          <div style="display: inline-flex;  background-color: #4f4d4d12;  padding-left: 12%;" class="profile" >
+            <div style="padding-top: 12%;" v-if="o.gender==='man'">
+              <img width="50px" src='@/assets/img/man.png'>
+              <h3>{{o.userName}}</h3>
+            </div>
+            <div style="padding-top: 12%;" v-else>
+              <img width="50px" src='@/assets/img/woman.png'>
+              <h3>{{o.userName}}</h3>
+            </div>
+            <el-card style="width: 242px;" class="box-toadyMoney">
+              <div style="float: right;">
+                <h3>하루 예산 {{o.budget}}</h3>
+                <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
+              </div>
+              <el-progress :percentage=calucatePercentage(o.budget,o.totalExpense) :format="format"></el-progress>
+            </el-card>
           </div>
-          <div style="display: inline-flex;" v-else>
-            <img width="50px" src='@/assets/img/woman.png'>
-            <h3>{{o.userName}}</h3>
-          </div>
-=======
-             <div style="display: inline-flex;"><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')"><h3>{{o.userName}}</h3></div>
->>>>>>> ec64dced025a43bd1c3e7f9c4d1003345bed082a
-          <el-card class="box-toadyMoney">
-            <h3>하루 예산 {{o.budget}}</h3>
-            <h3>오늘 쓴 돈 {{o.totalExpense}}</h3>
-            <el-progress :percentage=calucatePercentage(o.budget,o.totalExpense) :format="format"></el-progress>
-          </el-card>
         </div>
       </el-card>
       </el-col>
-      <el-col :span="13">
-        <div>
-          <h2>채팅창들어갈 곳</h2>
-<<<<<<< HEAD
-          <div  v-for="o in chatMessage" :key='o.userid'>  
-          <div style="display: flex;" ><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')">
-          <h5>{{o.userName}} -> {{o.content}}</h5></div>
-=======
-          <div  v-for="o in chatMessage" :key='o.userid'>
-              <div style="display: flex;"><img size="50px" :src="require('@/assets/img/'+o.gender+'.png')"><h5>{{o.userName}} ->{{o.content}}</h5></div>
->>>>>>> ec64dced025a43bd1c3e7f9c4d1003345bed082a
-          </div>
-          <div style="display:flex;">
+      <el-col :span="12">
+          <div class="components-container board"></div>
+          <div  style="display:flex;padding-top:30px">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
             <el-button type="info" >send</el-button>
           </div>
-        </div>
+          <el-card class="box-card">
+            <div v-for="o in chatMessage"  :key='o.userid' class="text item">
+               <div style="display: flex;">
+               <div style="display: flex;" ><img size="40px" :src="require('@/assets/img/'+o.gender+'.png')">
+               <h5>{{o.userName}}</h5></div>
+                <div style="padding-top: 21px; padding-left: 61px;" id="comment">{{o.content}}</div>
+               </div>
+            </div>   
+          </el-card>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
@@ -68,14 +68,8 @@ export default {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
-<<<<<<< HEAD
         const value = (totalExpense/totalBudget)*100
         return value;
-=======
-    
-       
-        return (totalExpense/totalBudget)*100;
->>>>>>> ec64dced025a43bd1c3e7f9c4d1003345bed082a
       },
 
      open() {
@@ -103,8 +97,8 @@ export default {
    data() {
     return {
       input: ''
-    }
-  }
+     }
+   }
 };
 </script>
 
@@ -134,5 +128,30 @@ export default {
   .clearfix:after {
     clear: both
   }
+  .board {
+  width: 1000px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.kanban {
+  &.todo {
+    .board-column-header {
+      background: #4A9FF9;
+    }
+  }
+  &.working {
+    .board-column-header {
+      background: #f9944a;
+    }
+  }
+  &.done {
+    .board-column-header {
+      background: #2ac06d;
+    }
+  }
+}
 
 </style>
