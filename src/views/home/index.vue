@@ -7,20 +7,20 @@
        </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          
-          <el-button type="primary" icon="el-icon-plus" style="float: right; background-color: #5b7fde;border-color: #5b7fde;">Invite home</el-button>
-
+          <el-button type="primary" icon="el-icon-plus" 
+          style="float: right; background-color: #5b7fde;border-color: #5b7fde;">Invite home</el-button>
         </div>
         <div   v-for="o in familyBudget" :key="o.userId" class="text item">
           <div style="display: inline-flex;  background-color: #4f4d4d12;  padding-left: 12%;" class="profile" >
-            <div style="padding-top: 12%;" v-if="o.gender==='man'">
-              <img width="50px" src='@/assets/img/man.png'>
+            <div style="padding-top: 12%;" v-if="o.age>=20">
+              <img width="50px" :src="require('@/assets/img/'+o.gender+'2.png')">
               <h3>{{o.userName}}</h3>
             </div>
             <div style="padding-top: 12%;" v-else>
-              <img width="50px" src='@/assets/img/woman.png'>
+              <img width="50px" :src="require('@/assets/img/'+o.gender+'.png')">
               <h3>{{o.userName}}</h3>
             </div>
+              
             <el-card style="width: 242px;" class="box-toadyMoney">
               <div style="float: right;">
                 <h3>하루 예산 {{o.budget}}</h3>
@@ -32,25 +32,38 @@
         </div>
       </el-card>
       </el-col>
+
+<!----------------------채팅 부분------------------------------------------------------------------------------------>
+
       <el-col :span="14">
           <div class="components-container board"></div>
-          
+
+<!----------------------입력부분------------------------------------------------------------------------------------>  
+
           <el-card style="display: contents;" class="box-card">
             <div  style="display: contents; padding-top:30px">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
             <el-button style="background-color: #5b7fde" type="info" >send</el-button>
             </div>
           </el-card>
-          
+
+ <!----------------------채팅 내용부분------------------------------------------------------------------------------------>            
           <el-card style="background-color: #f3f2f2;" class="box-card">
-            <div v-for="o in chatMessage"  :key='o.userid' class="text item">
-               <div style="display: flex;">
-               <div style="display: flex;" ><img size="40px" :src="require('@/assets/img/'+o.gender+'.png')">
-               <h5>{{o.userName}}</h5></div>
-                <div style="padding-top: 21px; padding-left: 61px;" id="comment">{{o.content}}</div>
-               </div>
-            </div>   
+            <div v-for="o in chatMessage" :key="o.userId" class="text item"> 
+             
+              <div v-if="o.age>=20">
+                  <img width="40px" :src="require('@/assets/img/'+o.gender+'2.png')">
+                  <h5>{{o.userName}}</h5>
+                  {{o.content}}
+              </div>
+              <div  v-else>
+                 <img width="40px" :src="require('@/assets/img/'+o.gender+'.png')">
+                 <h5>{{o.userName}}</h5>
+                 {{o.content}}  
+              </div>
+            </div>
           </el-card>
+          <img style="width: 600px;padding-top: 50px;" src="@/assets/img/show_1.png">  
       </el-col>
     </el-row>
   </div>
