@@ -2,7 +2,7 @@
   <!-- <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div> -->
 
-  <div> 
+  <div > 
     <el-row :gutter="23" class="container">
        <el-col :span="10">
          <div style="padding-top: 10px;" class="grid-content bg-purple">
@@ -43,11 +43,11 @@
           <div style="padding-top: 19px;" class="grid-content bg-purple">
         
             <img src="@/assets/img/calendar.png"> 
-             <el-checkbox-group v-model="checkList">
+             <el-checkbox-group style=" padding-top: 38px; padding-bottom: 10px;" v-model="checkList">
               <el-checkbox 	label="지출"></el-checkbox>
               <el-checkbox label="소비"></el-checkbox>
              </el-checkbox-group> 
-              <v-calendar :attributes='attributes' />
+              <v-calendar is-expanded/>
           </div>
           </el-col>
       </el-row>

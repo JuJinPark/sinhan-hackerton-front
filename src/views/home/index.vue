@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-row :gutter="23" class="container">
-    <el-col :span="9">
-      <div style="padding-left: 25px;">
+      <el-col :span="10">
+        <div style="padding-left: 25px;">
          <img width="130px" style="padding-top: 15px;padding-bottom: 15px;" src='@/assets/img/member.png'>
-      </div>
+       </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
           
@@ -32,12 +32,16 @@
         </div>
       </el-card>
       </el-col>
-      <el-col :span="12">
+      <el-col :span="14">
           <div class="components-container board"></div>
-          <div  style="display:flex;padding-top:30px">
+          
+          <el-card style="display: contents;" class="box-card">
+            <div  style="display: contents; padding-top:30px">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
-            <el-button type="info" >send</el-button>
-          </div> 
+            <el-button style="background-color: #5b7fde" type="info" >send</el-button>
+            </div>
+          </el-card>
+          
           <el-card style="background-color: #f3f2f2;" class="box-card">
             <div v-for="o in chatMessage"  :key='o.userid' class="text item">
                <div style="display: flex;">
@@ -103,19 +107,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
+// .dashboard {
+//   &-container {
+//     margin: 30px;
+//   }
+//   &-text {
+//     font-size: 30px;
+//     line-height: 46px;
+//   }
+// }
+ .container {
+    // position: relative;
+    height: 100vh;
   }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
-}
   .text {
     font-size: 14px;
   }
-
+  .el-card__header{
+    background: #d3dce6;
+  }
   .item {
     margin-bottom: 18px;
   }
@@ -128,30 +138,14 @@ export default {
   .clearfix:after {
     clear: both
   }
-  .board {
-  width: 1000px;
-  margin-left: 20px;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: flex-start;
-}
-.kanban {
-  &.todo {
-    .board-column-header {
-      background: #4A9FF9;
-    }
-  }
-  &.working {
-    .board-column-header {
-      background: #f9944a;
-    }
-  }
-  &.done {
-    .board-column-header {
-      background: #2ac06d;
-    }
-  }
-}
+//   .board {
+//   width: 1000px;
+//   margin-left: 20px;
+//   display: flex;
+//   justify-content: space-around;
+//   flex-direction: row;
+//   align-items: flex-start;
+// }
+
 
 </style>

@@ -39,11 +39,11 @@
         <el-switch v-model="value1" active-text='Family'
           inactive-text="Only me" style="padding-bottom: 38px;">
         </el-switch>
-         <el-checkbox-group v-model="checkList">
+         <el-checkbox-group style="padding-bottom: 18px; padding-top: 30px;" v-model="checkList">
               <el-checkbox 	label="지출"></el-checkbox>
               <el-checkbox label="소비"></el-checkbox>
-             </el-checkbox-group> 
-              <v-calendar :attributes='attributes' />
+          </el-checkbox-group> 
+              <v-calendar  is-expanded />
       </div>
     </el-col>
 </el-row>
@@ -55,12 +55,13 @@
 
 import { mapGetters } from 'vuex'
 
+
 export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
       'name'
-    ])
+    ]), 
   },
   data() {
       return {
@@ -98,7 +99,7 @@ export default {
             ]
           }
       }
-    }
+    },
 }
 </script>
 
