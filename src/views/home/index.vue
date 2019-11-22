@@ -2,8 +2,8 @@
   <div>
     <el-row :gutter="23" class="container">
     <el-col :span="9">
-      <div>
-         <img width="120px" src='@/assets/img/member.png'>
+      <div style="padding-left: 25px;">
+         <img width="130px" style="padding-top: 15px;padding-bottom: 15px;" src='@/assets/img/member.png'>
       </div>
       <el-card class="box-card">
         <div slot="header" class="clearfix">
@@ -37,8 +37,8 @@
           <div  style="display:flex;padding-top:30px">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
             <el-button type="info" >send</el-button>
-          </div>
-          <el-card class="box-card">
+          </div> 
+          <el-card style="background-color: #f3f2f2;" class="box-card">
             <div v-for="o in chatMessage"  :key='o.userid' class="text item">
                <div style="display: flex;">
                <div style="display: flex;" ><img size="40px" :src="require('@/assets/img/'+o.gender+'.png')">
