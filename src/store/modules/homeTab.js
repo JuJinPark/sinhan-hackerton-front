@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 //글로벌 변수 
 const state = {
 familyBudget:[],
@@ -66,48 +66,49 @@ const actions = {
 
   },
 
-  getFamilyChat({ commit },roomId) {
+  getFamilyChat({ commit },walletId) {
       
-    // axios.post('/seats',roomId)
-    // .then(response => {
-    //   commit("UPDATE_FAMILYBUDGET",response.data);
-    // })
-     var response={};
-     response.data=[];
-     console.log(response.data)
-    response.data=[
-    {
-      userId: 1,
-      userName: "나",
-      content :"안녕하세요 가족재무채팅창입니다.",
-      gender : "man",
-      age : 16
-    },
-    {
-      userId: 2,
-      userName: "아빠",
-      content :"오늘 돈 좀 쓸게요.",
-      gender : "man",
-      age : 45
-    },
-    {
-      userId: 3,
-      userName: "엄마",
-      content :"엥? 무슨일 있어요?.",
-      gender : "woman",
-      age : 46
-    },
-    {
-      userId: 4,
-      userName: "누나",
-      content :"저도 오늘 교재사야돼요.",
-      gender : "woman",
-      age : 17
-    },
+    axios.get('/wallets/'+walletId+'/chats?size=5')
+    .then(response => {
+      commit("UPDATE_FAMILYCHAT",response.data);
+    })
 
-    ]
+    
+    //  var response={};
+    //  response.data=[];
+    //  console.log(response.data)
+    // response.data=[
+    //  { userId: 1,
+    //   userName: "나",
+    //   content :"안녕하세요 가족재무채팅창입니다.",
+    //   gender : "man",
+    //   age : 16
+    // },
+    // {
+    //     userId: 2,
+    //     userName: "아빠",
+    //     content :"오늘 돈 좀 쓸게요.",
+    //     gender : "man",
+    //     age : 45
+    // },
+    // {
+    //   userId: 3,
+    //   userName: "엄마",
+    //   content :"엥? 무슨일 있어요?.",
+    //   gender : "woman",
+    //   age : 46
+    // },
+    // {
+    //   userId: 4,
+    //   userName: "누나",
+    //   content :"저도 오늘 교재사야돼요.",
+    //   gender : "woman",
+    //   age : 17
+    // },
+
+    // ]
   
-    commit("UPDATE_FAMILYCHAT",response.data);
+    // commit("UPDATE_FAMILYCHAT",response.data);
 
   },
 

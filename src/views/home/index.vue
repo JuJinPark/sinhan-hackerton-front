@@ -50,7 +50,7 @@
 
  <!----------------------채팅 내용부분------------------------------------------------------------------------------------>            
           <el-card style="background-color: #f3f2f2;" class="box-card">
-            <div v-for="o in chatMessage" :key="o.userId" class="text item"> 
+            <div v-for="o in chatMessage"  class="text item"> 
              
               <div style="    display: flex;" v-if="o.age>=20">
                 <span style="    display: contents;">                
@@ -134,7 +134,7 @@ export default {
   mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
     this.$store.dispatch('homeTab/getFamilyBuget');
-    this.$store.dispatch('homeTab/getFamilyChat');
+    this.$store.dispatch('homeTab/getFamilyChat',1);
 
   },
 

@@ -11,7 +11,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-
+import axios from 'axios'
 import '@/icons' // icon
 import '@/permission' // permission control
 import VCalendar from 'v-calendar';
@@ -34,9 +34,13 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.use(VCalendar);
-
+Vue.prototype.$http = axios;
+const baseURL = 'http://10.3.17.107:3000';
 Vue.config.productionTip = false
-
+if (typeof baseURL !== 'undefined') {
+  axios.defaults.baseURL = baseURL;
+}
+// axios.defaults.withCredentials = true
 new Vue({
   el: '#app',
   router,
