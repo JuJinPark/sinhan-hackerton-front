@@ -5,14 +5,14 @@
     <el-row :gutter="20">
       <el-col :span='10'>
         <div style="padding-left: 103px;padding-top: 23px;">
-          <img src="@/assets/img/categoryTitle.png" style="width: 150px;"></div>
-        <div style="padding-left: 32px;   padding-top: 35px;" class="chart-wrapper">
-         <pie-chart />
+          <img src="@/assets/img/ico_dash_title1.png"></div>
+        <div style="padding-left: 32px; padding-top: 35px;" class="chart-wrapper">
+         <pie-chart/>
         </div>
       </el-col>
       <el-col :span='14'>
         <div style="padding-left: 222px;padding-top: 23px;">
-          <img src="@/assets/img/monthly_family.png" style="width: 150px;"></div>
+          <img src="@/assets/img/ico_dash_title2.png"></div>
         <div style="padding-left: 75px;"  class="chart-wrapper">
           <bar-chart />
         </div>
@@ -22,12 +22,12 @@
     <el-row :gutter="20">
       <el-col :span='15' style="padding-right:8px;margin-bottom:30px;">
           <div style="padding-left: 103px;padding-top: 23px;">
-          <img src="@/assets/img/income_fam.png" style="width: 150px;"></div>
+          <img src="@/assets/img/ico_dash_title3.png"></div>
         <transaction-table />
       </el-col>
       <el-col :span='5'  style="padding-right:8px;margin-bottom:30px;">
          <div style="padding-left: 53px;padding-top: 23px;">
-          <img src="@/assets/img/lend_money.png" style="width: 150px;"></div>
+          <img src="@/assets/img/ico_dash_title4.png"></div>
          <div style="padding-top:30px;">
         <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="width: 300px;"></el-progress>
         </div>
