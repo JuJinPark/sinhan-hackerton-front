@@ -77,10 +77,10 @@ export default {
   methods:{
       getAttributes() {
         var attributes=[];
-      console.log(this.myMonthlyIncome.list)
+      console.log(this.myMonthlyIncome)
 
-    if(this.expenseCheck&&this.myMonthlyExpense.list!=undefined){
-      for(var value of this.myMonthlyExpense.list) {
+    if(this.expenseCheck&&this.myMonthlyExpense!=undefined){
+      for(var value of this.myMonthlyExpense) {
           
           var dots={
             dates:new Date(value.date),
@@ -97,8 +97,8 @@ export default {
 
     }
 
-    if(this.incomeCheck&&this.myMonthlyIncome.list!=undefined){
-     for(var value of this.myMonthlyIncome.list) {
+    if(this.incomeCheck&&this.myMonthlyIncome!=undefined){
+     for(var value of this.myMonthlyIncome) {
              var dots={
             dates:new Date(value.date),
             dot:{
