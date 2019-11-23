@@ -63,6 +63,7 @@
           </el-checkbox-group>  -->
               <v-calendar  is-expanded />
       </div>
+      <img src="@/assets/img/rhkdrh.png" style="width:100%; padding-top:70px">
     </el-col>
 </el-row>
 </div>

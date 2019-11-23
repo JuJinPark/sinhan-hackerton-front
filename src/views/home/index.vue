@@ -84,7 +84,6 @@ export default {
       'familyBudget',
       'chatMessage',
       'loginUser'
-
     ])
   },
   methods: {
@@ -94,10 +93,8 @@ export default {
             cancelButtonText: 'Cancel',
             inputErrorMessage: 'Invalid userID'
           }).then(({ value }) => {
-            this.$message({
-              type: 'success',
-              message: "초대 성공"
-            });
+             console.log("ㅁㅁ");
+           
           }).catch(() => {
             this.$message({
               type: 'info',
@@ -124,6 +121,7 @@ export default {
           this.$message({
             type: 'success',
             message: '초대가족 ID' + value
+
           });
         }).catch(() => {
           this.$message({
@@ -138,7 +136,7 @@ export default {
     console.log(this.loginUser)
     this.$store.dispatch('homeTab/getFamilyBuget',this.loginUser.walletId);
     this.$store.dispatch('homeTab/getFamilyChat',this.loginUser.walletId);
-
+    
   },
    data() {
     return {

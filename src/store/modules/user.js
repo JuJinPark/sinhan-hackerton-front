@@ -46,24 +46,6 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-<<<<<<< HEAD
-
-      // axios.post('/login/'+walletId+'/_budget')
-      // .then(response => {
-      //   commit("UPDATE_FAMILYBUDGET",response.data);
-      // })
-
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-
-        
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-
-
-
-        resolve()
-=======
        
       axios.post('/login',{ userId: username.trim(), password: password })
       .then(response => {
@@ -84,7 +66,6 @@ const actions = {
         }).catch(error => {
           reject(error)
         })
->>>>>>> 562e448a8aee7085375fae78256f5aef751c3800
       }).catch(error => {
           reject(error)
         })

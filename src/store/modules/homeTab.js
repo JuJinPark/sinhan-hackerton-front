@@ -24,56 +24,23 @@ const actions = {
     .then(response => {
       commit("UPDATE_FAMILYBUDGET",response.data);
     })
-    //  var response={};
-    //  response.data=[];
-    //  console.log(response.data)
-    // response.data=[
-    //  { userId: 1,
-    //   userName: "나",
-    //   budget: 5000,
-    //   totalExpense:2000,
-    //   gender: "man",
-    //     age : 16
-    // },
-    // {
-    //   userId: 2,
-    //   userName: "아빠",
-    //   budget: 5000,
-    //   totalExpense:1000,
-    //   gender: "man",
-    //   age:40
-    // },
-    // {
-    //   userId: 3,
-    //   userName: "엄마",
-    //   budget: 5000,
-    //   totalExpense:1500,
-    //   gender: "woman",
-    //   age:45
-    // },
-    // {
-    //   userId: 4,
-    //   userName: "누나",
-    //   budget: 5000,
-    //   totalExpense:1550,
-    //   gender: "woman",
-    //   age:17
-    // },
-
-    // ]
-  
-    // commit("UPDATE_FAMILYBUDGET",response.data);
-
   },
+  // getFamilyChatPlus({commit},walletId,) {
+  
+  //   axios.get('/wallets/'+walletId+'/_budget')
+  //   .then(response => {
+  //     commit("UPDATE_FAMILYBUDGET",response.data);
+  //   })
 
+  // },
   getFamilyChat({ commit },walletId) {
       
     axios.get('/wallets/'+walletId+'/chats?size=5')
     .then(response => {
       commit("UPDATE_FAMILYCHAT",response.data);
-  })
+    })
+  }
 }
-
 export default {
   namespaced: true,
   state,
