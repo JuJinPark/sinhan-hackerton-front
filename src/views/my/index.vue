@@ -21,10 +21,14 @@
           <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span> {{myTodayExpense.totalExpense}}</span>
+                <!-- <span>{{myTodayExpense.expensePerDay[0].list[0].vendor}}</span> -->
             </div>
-          <div v-for="o in myTodayExpense.expensePerDay[0].detail" :key=o.time class="text item">
+          <!-- <div v-if="myTodayExpense.expensePerDay[0]=!undefined&&myTodayExpense.expensePerDay[0].list!=undefined"> -->
+          <div v-for="o in myTodayExpense.expensePerDay[0].list" :key=o.time class="text item">
             <div style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
           </div>
+          <!-- </div> -->
+
           </el-card>
             <img style="padding-bottom:20px;padding-top:40px;" src="@/assets/img/ico_my_sub2.png">
             </div>
@@ -32,9 +36,12 @@
             <div slot="header" class="clearfix">
                 <span>{{myTodayIncome.totalIncome}}</span>
             </div>
-          <div v-for="o in myTodayIncome.incomePerDay[0].detail"  :key=o.time  class="text item">
+          <div v-if="myTodayIncome.incomesPerDay!=undefined&&myTodayIncome.incomesPerDay[0]!=undefined">
+          <div v-for="o in myTodayIncome.incomesPerDay[0].list"  :key=o.time  class="text item">
             <span style='display: flex;'><h5> {{o.vendor}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
           </div>
+          </div>
+          
           </el-card>
           </div>
       </el-col>
@@ -70,10 +77,10 @@ export default {
   methods:{
       getAttributes() {
         var attributes=[];
-      //console.log(this.myMonthlyExpense.totalExpense)
+      console.log(this.myMonthlyIncome)
 
-    if(this.expenseCheck){
-      for(var value of this.myMonthlyExpense.expensePerDay) {
+    if(this.expenseCheck&&this.myMonthlyExpense!=undefined){
+      for(var value of this.myMonthlyExpense) {
           
           var dots={
             dates:new Date(value.date),
@@ -90,8 +97,8 @@ export default {
 
     }
 
-    if(this.incomeCheck){
-     for(var value of this.myMonthlyIncome.incomePerDay) {
+    if(this.incomeCheck&&this.myMonthlyIncome!=undefined){
+     for(var value of this.myMonthlyIncome) {
              var dots={
             dates:new Date(value.date),
             dot:{
@@ -115,7 +122,9 @@ export default {
       'myTodayExpense',
       'myTodayIncome',
       'myMonthlyExpense',
-      'myMonthlyIncome'
+      'myMonthlyIncome',
+      'loginUser',
+      'today'
     ]),
 
     inputState() {
@@ -144,12 +153,13 @@ export default {
    },
     mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
-    this.$store.dispatch('myTab/getMyTodayExpense');
-    this.$store.dispatch('myTab/getMyTodayIncome');
-    this.$store.dispatch('myTab/getMyMonthlyIncome');
-    this.$store.dispatch('myTab/getMonthlyExpense');
 
-  },
+    this.$store.dispatch('myTab/getMyTodayExpense',{'loginUser': this.loginUser,'start':this.today,'end':'2019-11-24'});
+    this.$store.dispatch('myTab/getMyTodayIncome', {'loginUser': this.loginUser,'start':this.today,'end':'2019-11-24'});
+    this.$store.dispatch('myTab/getMyMonthlyIncome',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
+    this.$store.dispatch('myTab/getMonthlyExpense',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
+
+  }
 }
 </script>
 

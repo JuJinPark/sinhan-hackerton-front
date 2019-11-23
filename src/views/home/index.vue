@@ -50,7 +50,7 @@
 
  <!----------------------채팅 내용부분------------------------------------------------------------------------------------>            
           <el-card style="background-color: #f3f2f2;" class="box-card">
-            <div v-for="o in chatMessage"  class="text item"> 
+            <div v-for="o in chatMessage" class="text item"> 
              
               <div style="    display: flex;" v-if="o.age>=20">
                 <span style="    display: contents;">                
@@ -83,7 +83,7 @@ export default {
       ...mapGetters([
       'familyBudget',
       'chatMessage',
-      'userID'
+      'loginUser'
     ])
   },
   methods: {
@@ -93,10 +93,8 @@ export default {
             cancelButtonText: 'Cancel',
             inputErrorMessage: 'Invalid userID'
           }).then(({ value }) => {
-            this.$message({
-              type: 'success',
-              message: "초대 성공"
-            });
+             console.log("ㅁㅁ");
+           
           }).catch(() => {
             this.$message({
               type: 'info',
@@ -111,7 +109,7 @@ export default {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
-        const value = (totalExpense/totalBudget)*100
+        const value = Math.round((totalExpense/totalBudget)*100)
         return value;
       },
 
@@ -123,6 +121,7 @@ export default {
           this.$message({
             type: 'success',
             message: '초대가족 ID' + value
+
           });
         }).catch(() => {
           this.$message({
@@ -133,12 +132,12 @@ export default {
     },
   mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
-    this.$store.dispatch('homeTab/getFamilyBuget');
-    this.$store.dispatch('homeTab/getFamilyChat',1);
-
+    console.log("--home--")
+    console.log(this.loginUser)
+    this.$store.dispatch('homeTab/getFamilyBuget',this.loginUser.walletId);
+    this.$store.dispatch('homeTab/getFamilyChat',this.loginUser.walletId);
+    
   },
-
-  
    data() {
     return {
       input: ''

@@ -12,30 +12,48 @@
     </div>
     <div> 
       <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <div style="text-align: end"><span >Total : 1000000</span> </div>   
+      <el-card s class="box-card">
+        <div  slot="header" class="clearfix" >
+          <div ><h3>Total : 1000000</h3> </div>   
         </div>
-    <div v-for="o in 4" :key="o" class="text item">
-          {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>
+    <div v-for="o in 4" :key="o" class="text item" style=" display: flex;">
+          <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
+        <span style=" display: flex;padding-bottom: 21px;" ><img src="@/assets/img/male.png" style="width:54px"><h4>userName</h4></span>
+        <span><h3> 오늘 쓴 돈</h3></span>
     </div>
     </el-card>
       <img style="padding-bottom:20px;padding-top:40px;" src="@/assets/img/ico_my_sub2.png">
+      
       </div>
           <el-card class="box-card">
       <div slot="header" class="clearfix">
            <div style="text-align: end"><span >3,500,000</span> </div>        
       </div>
-      <div  v-for="o in 4" :key="o" class="text item">
-            {{'List item ' + o }} 
-            <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>
-      </div>
+      <!-- <div  v-for="o in 4" :key="o" class="text item">
+         {{'List item ' + o }}    <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>  
+      </div> -->
     </el-card>
     </div>
     </el-col>
     <el-col :span="14">
       <div class="grid-content bg-purple">  
         <img style="padding-bottom:90px;" src="@/assets/img/ico_my_title2.png">
+          <div style="float: right;">
+            <img style="width:60px" src="@/assets/img/male.png">
+           <img style="width:60px" src="@/assets/img/female.png">
+           <img style="width:60px" src="@/assets/img/female2.png">
+           <img style="width:60px" src="@/assets/img/male2.png">
+         </div>
+  
+         <!-- <div v-for="o in familyBudget" :key="o.userId" >
+           <h3>o.age</h3>
+           <span v-if="o.age>19">
+              <img :src="require('@/assets/img/'+o.gender+'.png')">
+           </span>
+           <span v-else>
+          <img :src="require('@/assets/img/'+o.gender+'2.png')">
+          </span>
+        </div> -->
         <!-- <el-switch v-model="value1" active-text='Family'
           inactive-text="Only me" style="padding-bottom: 38px;">
         </el-switch>
@@ -45,6 +63,7 @@
           </el-checkbox-group>  -->
               <v-calendar  is-expanded />
       </div>
+      <img src="@/assets/img/rhkdrh.png" style="width:100%; padding-top:70px">
     </el-col>
 </el-row>
 </div>
@@ -60,7 +79,7 @@ export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
-      'familySobi'
+      'familyBudget'
     ]), 
   },
   data() {
@@ -81,5 +100,6 @@ export default {
     font-size: 30px;
     line-height: 46px;
   }
+
 }
 </style>
