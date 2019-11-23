@@ -14,7 +14,7 @@
       <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
       <el-card style="text-align: end;" class="box-card">
         <div slot="header" class="clearfix" >
-          <div><h3> {{familyDailyExpense.totalExpense}}원</h3> </div>   
+          <h3> {{familyDailyExpense.totalExpense}}원</h3>    
         </div>
    <div v-if="familyDailyExpense.totalExpense!=0">
     <div v-for="o in dailyExpense" :key="o.id" class="text item" style=" display: flex;">
