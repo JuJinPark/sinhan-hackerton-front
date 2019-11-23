@@ -39,7 +39,7 @@
             </div>
           <div v-if="myTodayIncome.totalIncome!=0">
           <div v-for="o in myTodayIncome.incomesPerDay[0].list"  :key=o.time  class="text item">
-            <span style='display: flex;'><h5>{{o.vender}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
+            <span style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
           </div>
           </div>
           
@@ -50,7 +50,7 @@
       <el-col :span="14" >
           <div class="grid-content bg-purple">
             <img style="padding-bottom:90px;"  src="@/assets/img/ico_my_title2.png"> 
-              <el-checkbox label="수입"" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
+              <el-checkbox label="수입" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
               <el-checkbox label="소비" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
               <v-calendar is-expanded  :attributes="getAttributes()"/>
             </div>
