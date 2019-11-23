@@ -50,7 +50,7 @@
       <el-col :span="14" >
           <div class="grid-content bg-purple">
             <img style="padding-bottom:90px;"  src="@/assets/img/ico_my_title2.png"> 
-              <el-checkbox label="지출" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
+              <el-checkbox label="수입"" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
               <el-checkbox label="소비" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
               <v-calendar is-expanded  :attributes="getAttributes()"/>
             </div>
@@ -95,14 +95,14 @@ export default {
 
    
   },
-   data() {
-    return {
+  //  data() {
+  //   return {
      
-       checkList: ['소비','지출'],
-       incomeCheck:true,
-       expenseCheck:true
-    };
-   },
+  //      checkList: ['소비','수입'],
+  //      incomeCheck:true,
+  //      expenseCheck:true
+  //   };
+  //  },
   methods:{
     shareData(){
       console.log("jj")
@@ -176,8 +176,7 @@ export default {
   },
    data() {
     return {
-     
-       checkList: ['소비','지출'],
+       checkList: ['소비','수입'],
        incomeCheck:true,
        expenseCheck:true
     };
@@ -215,6 +214,7 @@ export default {
   .container {
     // position: relative;
     height: 100vh;
+        background-color: #f7f7f7;
   }
 
  .text {

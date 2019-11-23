@@ -1,23 +1,24 @@
 <template>
-  <el-table :data="incomeList" style="width: 100%;padding-top: 15px;">
-    <el-table-column label="이름" min-width="200">
+  <el-table :data="incomeList" style="width: 70%;padding-top: 15px;">
+    <el-table-column label="이름" min-width="50">
       <template slot-scope="scope">
         {{ scope.row.userName | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="거래내역" min-width="200">
+    <el-table-column label="거래내역" min-width="100">
       <template slot-scope="scope">
         {{ scope.row.vendor | orderNoFilter }}
       </template>
     </el-table-column>
-    <el-table-column label="수입금액" width="195" align="center">
+    <!-- <el-table-column label="수입금액" width="100" align="center"> -->
+      <el-table-column label="수입금액" width="100" >
       <template slot-scope="scope">
-        ¥{{ scope.row.amount | toThousandFilter }}
+        {{ scope.row.amount | toThousandFilter }}
       </template>
     </el-table-column>
     <el-table-column label="날짜" width="100" align="center">
       <template slot-scope="{row}">
-        <el-tag :type="row.date | statusFilter">
+        <el-tag style="background-color: rgb(91, 127, 222); border: 1px solid rgba(64, 158, 255, 0);   color: #e6ecf3;" :type="row.date | statusFilter">
           {{ row.date }}
         </el-tag>
       </template>

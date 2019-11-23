@@ -68,7 +68,8 @@
               </div>
             </div>
           </el-card>
-          <img style="width: 100%;;padding-top: 50px;" src="@/assets/img/banner_home.png">  
+          <img style="width: 100%;padding-top: 30px;" src="@/assets/img/home_goal.png">
+          <img style="width: 100%;padding-top: 30px;" src="@/assets/img/banner_home.png">  
       </el-col>
     </el-row>
   </div>

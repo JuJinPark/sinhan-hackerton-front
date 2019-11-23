@@ -19,17 +19,18 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="20">
-      <el-col :span='15' style="padding-right:8px;margin-bottom:30px;">
+    <el-row style="   margin-left: 77px;" :gutter="20">
+      <el-col :span='12' style="padding-right:8px;margin-bottom:30px;">
           <div style="padding-left: 103px;padding-top: 23px;">
           <img src="@/assets/img/ico_dash_title3.png"></div>
         <transaction-table />
       </el-col>
-      <el-col :span='5'  style="padding-right:8px;margin-bottom:30px;">
+      <el-col :span='8'  style="padding-right:8px;margin-bottom:30px;">
          <div style="padding-left: 53px;padding-top: 23px;">
           <img src="@/assets/img/ico_dash_title4.png"></div>
          <div style="padding-top:30px;">
-        <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="width: 300px;"></el-progress>
+        <el-progress :text-inside="true" :stroke-width="26" :percentage="70" style="width: 100%;"></el-progress>
+        <div id="lendmoney" style=" color: #5b7fde;   padding-top: 34px; padding-left: 37%;">1억 中 7000만원 </div>
         </div>
       </el-col>
     </el-row>
@@ -64,7 +65,7 @@ export default {
 .dashboard {
   &-container {
     margin: 30px;
-     background-color:#F7F7F7;
+    background-color:#F7F7F7;
   }
   &-text {
     font-size: 30px;
