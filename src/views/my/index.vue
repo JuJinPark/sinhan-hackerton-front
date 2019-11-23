@@ -26,12 +26,13 @@
             </div>
           <div v-if="myTodayExpense.totalExpense!=0">
           <div v-for="o in myTodayExpense.expensePerDay[0].list" :key=o.time class="text item" style="font-size:large">
-               
-            <div style="display:inline; line-height: 41px;">{{o.vendor}}</div> 
-            <div style="display:inline; line-height: 41px;">( {{o.time}} )</div>
-            <div style='color: #e31c1c;padding-left: 85%; displaly:inline; line-height: 41px;'> {{'-'+o.amount}}웜</div>
+             <div style="display:float;">  
+            <div style="display:inline; line-height: 20px;font-size: 15px;">{{o.vendor}}</div> 
+            <div style="display:inline; line-height: 17px;font-size: 12px;">( {{o.time}} )</div>
+            <div style='color: #e31c1c; display: contents; font-size: 15px;line-height: 30px;'> {{'-'+o.amount}}원</div>
+          </div>
           <div style="display:inline; float:right"> <el-button type="primary" icon="el-icon-share" :size=small  @click="sendChat(o.vendor,'-'+o.amount)" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
-          <div style="display:inline; float:right;"> <el-button type="primary" icon="el-icon-view" :size=small  @click="sendChat(o.vendor,'+'+o.amount)" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
+          <div style="display:inline; float:right"> <el-button type="primary" icon="el-icon-view" :size=small  @click="sendChat(o.vendor,'+'+o.amount)" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
           </div>
           </div>
   
