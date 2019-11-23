@@ -30,55 +30,62 @@ const mutations = {
 }
 //액션을 통해 커밋으로 뮤테이션에 하는것에 의해서 값을 변경시킨다. 
 const actions = {
-  getMyTodayExpense({ commit },userId) {
-  
-    // axios.get('/seats',roomId)
+  getMyTodayExpense({ commit },payload) {
+    // console.log("-ex-")
+    // console.log(payload)
+    // var today2=new Date().setDate(payload.today.getDate() + 1)
+    axios.get('/users/'+payload.loginUser.id+'/expenses?start='+payload.start+'&end='+payload.end+'&size=5')
+    .then(response => {
+      commit("UPDATE_MYTODAYEXPENSE",response.data);
+    })
+
+    // axios.get('/users/'+payload.loginUser.id+'/incomes?start='+payload.start+'&end='+payload.end+'&size=5')
     // .then(response => {
-    //   commit("UPDATE_FAMILYBUDGET",response.data);
+    //   commit("UPDATE_MYTODAYINCOME",response.data);
     // })
-     var response={};
-     response.data=[];
-     console.log(response.data)
-    response.data={
-      totalExpense :110 ,
-      expensePerDay : 
-      [
-        { 
-        date:'2019-11-14',
-        amount:'1340',
-        detail:[ { 
-          time:'2019-11-14:09:00:00',
-          vendor:'보험료',
-          amount:'400'
-        },
-         { 
-          time:'2019-11-14:10:00:00',
-          vendor:'청국장집',
-          amount:'300'
-        },
-         { 
-          time:'2019-11-14:11:00:00',
-          vendor:'라면집',
-          amount:'340'
-        },
-         { 
-          time:'2019-11-14:19:00:00',
-          vendor:'청국장집',
-          amount:'300'
-          } 
-        ]
-      }
-      ]
-      } 
+    //  var response={};
+    //  response.data=[];
+    //  console.log(response.data)
+    // response.data={
+    //   totalExpense :110 ,
+    //   expensePerDay : 
+    //   [
+    //     { 
+    //     date:'2019-11-14',
+    //     amount:'1340',
+    //     detail:[ { 
+    //       time:'2019-11-14:09:00:00',
+    //       vendor:'보험료',
+    //       amount:'400'
+    //     },
+    //      { 
+    //       time:'2019-11-14:10:00:00',
+    //       vendor:'청국장집',
+    //       amount:'300'
+    //     },
+    //      { 
+    //       time:'2019-11-14:11:00:00',
+    //       vendor:'라면집',
+    //       amount:'340'
+    //     },
+    //      { 
+    //       time:'2019-11-14:19:00:00',
+    //       vendor:'청국장집',
+    //       amount:'300'
+    //       } 
+    //     ]
+    //   }
+    //   ]
+    //   } 
   
-    commit("UPDATE_MYTODAYEXPENSE",response.data);
+    // commit("UPDATE_MYTODAYEXPENSE",response.data);
 
   },
 
   getMyTodayIncome({commit,state },payload) {
-    console.log("--")
-    console.log(payload)
-    
+    // console.log("-income-")
+    // console.log(payload)
+    // var today2=new Date().setDate(payload.today.getDate() + 1)
     axios.get('/users/'+payload.loginUser.id+'/incomes?start='+payload.start+'&end='+payload.end+'&size=5')
     .then(response => {
       commit("UPDATE_MYTODAYINCOME",response.data);
@@ -116,93 +123,101 @@ const actions = {
 
   },
 
-  getMyMonthlyIncome({ commit },roomId) {
+  getMyMonthlyIncome({ commit },payload) {
       
     // axios.post('/seats',roomId)
     // .then(response => {
     //   commit("UPDATE_FAMILYBUDGET",response.data);
     // })
-     var response={};
-     response.data=[];
+
+    axios.get('/users/'+payload.loginUser.id+'/incomes/_simple?start='+payload.start+'&end='+payload.end+'&size=1000')
+    .then(response => {
+      commit("UPDATE_MYMONTHLYINCOME",response.data);
+    })
+    //  var response={};
+    //  response.data=[];
    
-    response.data={
-      totalIncome:10400,
-      incomePerDay:
-      [       
-         { 
-        date:'2019-10-01',
-       amount: 500,
-       detail:[]
-      },
-        { 
-          date:'2019-10-04',
-         amount: 500,
-         detail:[]
-        },
-      { 
-        date:'2019-11-04',
-       amount: 200,
-       detail:[]
-      },
-      { 
-        date:'2019-11-10',
-       amount: 400,
-       detail:[]
-      },
-      { 
-        date:'2019-11-15',
-       amount: 500,
-       detail:[]
-      }
-      ]
-    }
+    // response.data={
+    //   totalIncome:10400,
+    //   incomePerDay:
+    //   [       
+    //      { 
+    //     date:'2019-10-01',
+    //    amount: 500,
+    //    detail:[]
+    //   },
+    //     { 
+    //       date:'2019-10-04',
+    //      amount: 500,
+    //      detail:[]
+    //     },
+    //   { 
+    //     date:'2019-11-04',
+    //    amount: 200,
+    //    detail:[]
+    //   },
+    //   { 
+    //     date:'2019-11-10',
+    //    amount: 400,
+    //    detail:[]
+    //   },
+    //   { 
+    //     date:'2019-11-15',
+    //    amount: 500,
+    //    detail:[]
+    //   }
+    //   ]
+    // }
   
-    commit("UPDATE_MYMONTHLYINCOME",response.data);
+   // commit("UPDATE_MYMONTHLYINCOME",response.data);
 
   },
 
-  getMonthlyExpense({ commit },roomId) {
-      
+  getMonthlyExpense({ commit },payload) {
+    axios.get('/users/'+payload.loginUser.id+'/expenses/_simple?start='+payload.start+'&end='+payload.end+'&size=1000')
+    .then(response => {
+      commit("UPDATE_MYMONTHLYEXPENSE",response.data);
+    })
     // axios.post('/seats',roomId)
     // .then(response => {
     //   commit("UPDATE_FAMILYBUDGET",response.data);
     // })
-     var response={};
-     response.data=[];
-     console.log(response.data)
-    response.data={
-      totalExpense:10400,
-      expensePerDay:
-      [       
-         { 
-        date:'2019-10-01',
-       amount: 500,
-       detail:[]
-      },
-        { 
-          date:'2019-10-10',
-         amount: 500,
-         detail:[]
-        },
-      { 
-        date:'2019-10-22',
-       amount: 200,
-       detail:[]
-      },
-      { 
-        date:'2019-11-1',
-       amount: 400,
-       detail:[]
-      },
-      { 
-        date:'2019-11-10',
-       amount: 500,
-       detail:[]
-      }
-      ]
-    }
+    //  var response={};
+    //  response.data=[];
+    //  console.log(response.data)
+    // response.data={
+    //   totalExpense:10400,
+    //   expensePerDay:
+    //   [       
+    //      { 
+    //     date:'2019-10-01',
+    //    amount: 500,
+    //    detail:[]
+    //   },
+    //     { 
+    //       date:'2019-10-10',
+    //      amount: 500,
+    //      detail:[]
+    //     },
+    //   { 
+    //     date:'2019-10-22',
+    //    amount: 200,
+    //    detail:[]
+    //   },
+    //   { 
+    //     date:'2019-11-1',
+    //    amount: 400,
+    //    detail:[]
+    //   },
+    //   { 
+    //     date:'2019-11-10',
+    //    amount: 500,
+    //    detail:[]
+    //   }
+    //   ]
+    // }
   
-    commit("UPDATE_MYMONTHLYEXPENSE",response.data);
+    // commit("UPDATE_MYMONTHLYEXPENSE",response.data);
 
   },
 }
