@@ -6,7 +6,7 @@ import settings from './modules/settings'
 import user from './modules/user'
 import homeTab from './modules/homeTab'
 import myTab from './modules/myTab'
-import axios from 'axios'
+import dashboadTab from './modules/dashboardTab'
 
 Vue.use(Vuex)
 
@@ -16,10 +16,10 @@ const store = new Vuex.Store({
     settings,
     user,
     homeTab,
-    myTab
+    myTab,
+    dashboadTab
   },
   getters
-  
 })
 
 export default store
