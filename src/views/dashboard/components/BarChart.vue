@@ -63,7 +63,6 @@ export default {
           animationDuration
         })
       }
-      console.log(series)
 
       this.chart.setOption({
         tooltip: {
