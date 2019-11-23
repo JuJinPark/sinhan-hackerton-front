@@ -5,6 +5,7 @@ const state = {
   myTodayIncome:{},
   myMonthlyExpense:{},
   myMonthlyIncome:{},
+  myShareResult:{}
 
 }
 //<!--위에있는 데이터를 글로벌변수 -->
@@ -25,11 +26,22 @@ const mutations = {
   UPDATE_MYMONTHLYINCOME: (state, myMonthlyIncome) => {
     state.myMonthlyIncome = myMonthlyIncome
   },
-   
+  UPDATE_MYSHAREMONEY: (state, myShareResult) => {
+    state.myShareResult = myShareResult
+  }
 
 }
 //액션을 통해 커밋으로 뮤테이션에 하는것에 의해서 값을 변경시킨다. 
 const actions = {
+  getShareMoney({ commit },payload) {
+    // console.log("-ex-")
+     console.log(payload)
+    // var today2=new Date().setDate(payload.today.getDate() + 1)
+    axios.get('/wallets/'+payload.loginUser.walletId+'/users/'+payload.loginUser.id+'/_sync')
+    .then(response => {
+      commit("UPDATE_MYSHAREMONEY",response.data);
+    })
+  },
   getMyTodayExpense({ commit },payload) {
     // console.log("-ex-")
     // console.log(payload)
@@ -38,48 +50,6 @@ const actions = {
     .then(response => {
       commit("UPDATE_MYTODAYEXPENSE",response.data);
     })
-
-    // axios.get('/users/'+payload.loginUser.id+'/incomes?start='+payload.start+'&end='+payload.end+'&size=5')
-    // .then(response => {
-    //   commit("UPDATE_MYTODAYINCOME",response.data);
-    // })
-    //  var response={};
-    //  response.data=[];
-    //  console.log(response.data)
-    // response.data={
-    //   totalExpense :110 ,
-    //   expensePerDay : 
-    //   [
-    //     { 
-    //     date:'2019-11-14',
-    //     amount:'1340',
-    //     detail:[ { 
-    //       time:'2019-11-14:09:00:00',
-    //       vendor:'보험료',
-    //       amount:'400'
-    //     },
-    //      { 
-    //       time:'2019-11-14:10:00:00',
-    //       vendor:'청국장집',
-    //       amount:'300'
-    //     },
-    //      { 
-    //       time:'2019-11-14:11:00:00',
-    //       vendor:'라면집',
-    //       amount:'340'
-    //     },
-    //      { 
-    //       time:'2019-11-14:19:00:00',
-    //       vendor:'청국장집',
-    //       amount:'300'
-    //       } 
-    //     ]
-    //   }
-    //   ]
-    //   } 
-  
-    // commit("UPDATE_MYTODAYEXPENSE",response.data);
-
   },
 
   getMyTodayIncome({commit,state },payload) {
@@ -90,87 +60,15 @@ const actions = {
     .then(response => {
       commit("UPDATE_MYTODAYINCOME",response.data);
     })
-    //  var response={};
-    //  response.data=[];
-    //  console.log(response.data)
-    // response.data={
-    //   totalIncome:104120,
-    //   incomePerDay:
-    //   [
-    //   { 
-    //     date:'2019-11-14',
-    //    amount: 10400,
-    //    detail:[{ 
-    //       time:'2019-11-14:09:00:00',
-    //       vendor:'월급',
-    //       amount:'5000'
-    //     },
-    //      { 
-    //       time:'2019-11-14:10:00:00',
-    //       vendor:'엄마',
-    //       amount:'2000'
-    //     },
-    //      { 
-    //       time:'2019-11-14:11:00:00',
-    //       vendor:'친구점심더치페이',
-    //       amount:'3400'
-    //     }]
-    //   }
-    //   ]
-    // }
-  
-    // commit("UPDATE_MYTODAYINCOME",response.data);
-
   },
 
   getMyMonthlyIncome({ commit },payload) {
       
-    // axios.post('/seats',roomId)
-    // .then(response => {
-    //   commit("UPDATE_FAMILYBUDGET",response.data);
-    // })
-
+  
     axios.get('/users/'+payload.loginUser.id+'/incomes/_simple?start='+payload.start+'&end='+payload.end+'&size=1000')
     .then(response => {
       commit("UPDATE_MYMONTHLYINCOME",response.data);
     })
-    //  var response={};
-    //  response.data=[];
-   
-    // response.data={
-    //   totalIncome:10400,
-    //   incomePerDay:
-    //   [       
-    //      { 
-    //     date:'2019-10-01',
-    //    amount: 500,
-    //    detail:[]
-    //   },
-    //     { 
-    //       date:'2019-10-04',
-    //      amount: 500,
-    //      detail:[]
-    //     },
-    //   { 
-    //     date:'2019-11-04',
-    //    amount: 200,
-    //    detail:[]
-    //   },
-    //   { 
-    //     date:'2019-11-10',
-    //    amount: 400,
-    //    detail:[]
-    //   },
-    //   { 
-    //     date:'2019-11-15',
-    //    amount: 500,
-    //    detail:[]
-    //   }
-    //   ]
-    // }
-  
-   // commit("UPDATE_MYMONTHLYINCOME",response.data);
-
   },
 
   getMonthlyExpense({ commit },payload) {
@@ -178,47 +76,6 @@ const actions = {
     .then(response => {
       commit("UPDATE_MYMONTHLYEXPENSE",response.data);
     })
-    // axios.post('/seats',roomId)
-    // .then(response => {
-    //   commit("UPDATE_FAMILYBUDGET",response.data);
-    // })
-    //  var response={};
-    //  response.data=[];
-    //  console.log(response.data)
-    // response.data={
-    //   totalExpense:10400,
-    //   expensePerDay:
-    //   [       
-    //      { 
-    //     date:'2019-10-01',
-    //    amount: 500,
-    //    detail:[]
-    //   },
-    //     { 
-    //       date:'2019-10-10',
-    //      amount: 500,
-    //      detail:[]
-    //     },
-    //   { 
-    //     date:'2019-10-22',
-    //    amount: 200,
-    //    detail:[]
-    //   },
-    //   { 
-    //     date:'2019-11-1',
-    //    amount: 400,
-    //    detail:[]
-    //   },
-    //   { 
-    //     date:'2019-11-10',
-    //    amount: 500,
-    //    detail:[]
-    //   }
-    //   ]
-    // }
-  
-    // commit("UPDATE_MYMONTHLYEXPENSE",response.data);
-
   },
 }
 
