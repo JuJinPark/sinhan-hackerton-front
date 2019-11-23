@@ -82,8 +82,7 @@ export default {
   computed: {
       ...mapGetters([
       'familyBudget',
-      'chatMessage',
-      'userID'
+      'chatMessage'
     ])
   },
   methods: {
@@ -133,12 +132,10 @@ export default {
     },
   mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
-    this.$store.dispatch('homeTab/getFamilyBuget');
+    this.$store.dispatch('homeTab/getFamilyBuget',1);
     this.$store.dispatch('homeTab/getFamilyChat',1);
 
   },
-
-  
    data() {
     return {
       input: ''

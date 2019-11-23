@@ -109,9 +109,7 @@ const actions = {
     // ]
   
     // commit("UPDATE_FAMILYCHAT",response.data);
-
   },
-
 }
 
 export default {
