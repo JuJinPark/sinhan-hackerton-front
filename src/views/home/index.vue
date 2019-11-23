@@ -14,14 +14,11 @@
         </div>
         <div style=" padding-left: 16%;"  v-for="o in familyBudget" :key="o.userId" class="text item">
           <div style="display: inline-flex; background-color: #4f4d4d12;  padding-left: 8%;" class="profile" >
-            <div style="padding-top: 10%;    width: 100px;" v-if="o.age>=20">
-              <img width="52.14px" :src="require('@/assets/img/'+o.gender+'2.png')">
+            <div style="padding-top: 10%;    width: 100px;">
+              <img width="52.14px" :src="require('@/assets/img/'+o.id+'.png')">
               <h3>{{o.userName}}</h3>
             </div>
-            <div style="padding-top: 12%; width: 100px;" v-else>
-              <img width="52.14px" :src="require('@/assets/img/'+o.gender+'.png')">
-              <h3>{{o.userName}}</h3>
-            </div>   
+            
             <el-card style="width: 242px;" class="box-toadyMoney">
               <div style="float: right;">
                 <h3>하루 예산 {{o.budget}}</h3>
@@ -52,20 +49,15 @@
           <el-card style="background-color: #f3f2f2;" class="box-card">
             <div v-for="o in chatMessage" class="text item"> 
              
-              <div style="    display: flex;" v-if="o.age>=20">
+              <div style="    display: flex;" >
                 <span style="    display: contents;">                
-                  <img width="52.14px" :src="require('@/assets/img/'+o.gender+'2.png')">
+                  <img width="52.14px" :src="require('@/assets/img/'+o.id+'.png')">
                   <h5>{{o.userName}}</h5>
                 </span>  
                   <span style="padding-left: 11%;padding-top: 3%;">{{o.content}}</span>
               </div>
-              <div style="    display: flex;"  v-else>
-                <span style="    display: contents;">
-                  <img width="52.14px" :src="require('@/assets/img/'+o.gender+'.png')">  
-                  <h5>{{o.userName}}</h5>
-                </span>
-                 <span  style="padding-left: 11%;padding-top: 3%;"> {{o.content}}</span>  
-              </div>
+  
+  
             </div>
           </el-card>
           <img style="width: 100%;padding-top: 30px;" src="@/assets/img/home_goal.png">
