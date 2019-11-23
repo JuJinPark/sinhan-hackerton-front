@@ -64,7 +64,7 @@ export default {
 .dashboard {
   &-container {
     margin: 30px;
-    background-color: #f0f2f5;
+     background-color:#F7F7F7;
   }
   &-text {
     font-size: 30px;
