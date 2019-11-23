@@ -50,7 +50,7 @@
 
  <!----------------------채팅 내용부분------------------------------------------------------------------------------------>            
           <el-card style="background-color: #f3f2f2;" class="box-card">
-            <div v-for="o in chatMessage"  class="text item"> 
+            <div v-for="o in chatMessage" :key="o.userId" class="text item"> 
              
               <div style="    display: flex;" v-if="o.age>=20">
                 <span style="    display: contents;">                
@@ -110,7 +110,7 @@ export default {
         return percentage === 100 ? '예산초과ㅠㅠ' : '${percentage}%';
       },
       calucatePercentage(totalBudget,totalExpense){
-        const value = (totalExpense/totalBudget)*100
+        const value = Math.round((totalExpense/totalBudget)*100)
         return value;
       },
 
