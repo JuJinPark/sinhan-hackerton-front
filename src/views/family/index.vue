@@ -19,7 +19,7 @@
    <div v-if="familyDailyExpense.totalExpense!=0">
     <div v-for="o in dailyExpense" :key="o.id" class="text item" style=" display: flex;">
           <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
-        <span style=" display: flex;padding-bottom: 21px;" ><img src="@/assets/img/male.png" style="width:54px">
+        <span style=" display: flex;padding-bottom: 21px;" ><img :src="require('@/assets/img/'+o.userId+'.png')" style="width:54px">
           <h4>{{o.name}}</h4>
         </span>
         <span><h3>{{o.amount}}</h3></span>
@@ -39,7 +39,7 @@
         <div v-if="familyDailyIncome.totalIncome!=0">
       <div v-for="o in dailyIncome" :key="o.id" class="text item" style=" display: flex;">
           <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
-        <span style=" display: flex;padding-bottom: 21px;" ><img src="@/assets/img/male.png" style="width:54px">
+        <span style=" display: flex;padding-bottom: 21px;" ><img :src="require('@/assets/img/'+o.userId+'.png')" style="width:54px">
           <h4>{{o.name}}</h4>
         </span>
         <span><h3>{{o.amount}}</h3></span>
@@ -52,10 +52,7 @@
       <div class="grid-content bg-purple">  
         <img style="padding-bottom:90px;" src="@/assets/img/ico_my_title2.png">
           <div style="float: right;">
-            <img style="width:60px" src="@/assets/img/male.png">
-           <img style="width:60px" src="@/assets/img/female.png">
-           <img style="width:60px" src="@/assets/img/female2.png">
-           <img style="width:60px" src="@/assets/img/male2.png">
+            <img style="width:60px" src="@/assets/img/test4.png">
          </div>
   
    
@@ -232,6 +229,5 @@ console.log("mounted")
     font-size: 30px;
     line-height: 46px;
   }
-
 }
 </style>

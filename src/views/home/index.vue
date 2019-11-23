@@ -15,7 +15,7 @@
         <div style=" padding-left: 16%;"  v-for="o in familyBudget" :key="o.userId" class="text item">
           <div style="display: inline-flex; background-color: #4f4d4d12;  padding-left: 8%;" class="profile" >
             <div style="padding-top: 10%;    width: 100px;">
-              <img width="52.14px" :src="require('@/assets/img/'+o.id+'.png')">
+              <img width="52.14px" :src="require('@/assets/img/'+o.userId+'.png')">
               <h3>{{o.userName}}</h3>
             </div>
             
@@ -51,7 +51,7 @@
              
               <div style="    display: flex;" >
                 <span style="    display: contents;">                
-                  <img width="52.14px" :src="require('@/assets/img/'+o.id+'.png')">
+                  <img width="52.14px" :src="require('@/assets/img/'+o.userId+'.png')">
                   <h5>{{o.userName}}</h5>
                 </span>  
                   <span style="padding-left: 11%;padding-top: 3%;">{{o.content}}</span>
