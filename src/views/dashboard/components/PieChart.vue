@@ -3,18 +3,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
 
 export default {
   mixins: [resize],
-  //   computed: {
-  //     ...mapGetters([
-  //     'familyBudget',
-  //     'chatMessage'
-  //   ])
-  // },
   props: {
     className: {
       type: String,
@@ -29,11 +24,16 @@ export default {
       default: '300px'
     }
   },
-  data(){
+  data() {
     return {
       chart: null,
-      status: "my"
+      status: 'my'
     }
+  },
+  computed: {
+    ...mapGetters([
+      'categorizedExpenses'
+    ])
   },
   mounted() {
     this.$nextTick(() => {
@@ -49,8 +49,8 @@ export default {
   },
   methods: {
     initChart() {
+      this.$store.dispatch('dashboadTab/getCategorizedExpenses', '1')
       this.chart = echarts.init(this.$el, 'macarons')
-
       this.chart.setOption({
         tooltip: {
           trigger: 'item',
@@ -59,7 +59,7 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['식비', '공과금', '쇼핑', '학원비', '보험금']
+          data: ['쇼핑', '식비', '월급', '보험금', '공과금비', '용돈', '교육비']
         },
         series: [
           {
@@ -68,20 +68,13 @@ export default {
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
-            data: [
-              { value: 320, name: '식비' },
-              { value: 240, name: '공과금' },
-              { value: 149, name: '쇼핑' },
-              { value: 100, name: '학원비' },
-              { value: 59, name: '보험금' }
-            ],
+            data: this.categorizedExpenses,
             animationEasing: 'cubicInOut',
             animationDuration: 2600
           }
         ]
       })
-    },
-
+    }
   }
 }
 </script>
