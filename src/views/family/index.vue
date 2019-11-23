@@ -1,14 +1,14 @@
 <template>
-  <div class="dashboard-container">
-    <div>
+  <div  style="background-color: #f7f7f7;"class="dashboard-container">
+    <div style="background-color: #f7f7f7;">
      <el-row :gutter="23" class="container">
       <el-col :span="10">
         <div class="grid-content bg-purple"> 
-    <div>
+    <div> 
     <div style="display:inline-block;">
       <img  src="@/assets/img/ico_my_title1.png">
-    </div>    
-      <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
+    </div>  
+      <!-- <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>    -->
     </div>
     <div> 
       <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
@@ -36,7 +36,7 @@
     </div>
     </el-col>
     <el-col :span="14">
-      <div class="grid-content bg-purple">  
+      <div  class="grid-content bg-purple">  
         <img style="padding-bottom:90px;" src="@/assets/img/ico_my_title2.png">
           <div style="float: right;">
             <img style="width:60px" src="@/assets/img/male.png">
@@ -93,13 +93,15 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard {
+  background-color: #f7f7f7;
+
   &-container {
     margin: 30px;
+    
   }
   &-text {
     font-size: 30px;
     line-height: 46px;
   }
-
 }
 </style>

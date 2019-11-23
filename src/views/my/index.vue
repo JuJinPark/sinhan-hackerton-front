@@ -2,7 +2,7 @@
   <!-- <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div> -->
 
-  <div > 
+  <div> 
     <el-row :gutter="23" class="container">
        <el-col :span="10">
          <div style="padding-top: 10px;" class="grid-content bg-purple">
@@ -25,7 +25,7 @@
             </div>
           <!-- <div v-if="myTodayExpense.expensePerDay[0]=!undefined&&myTodayExpense.expensePerDay[0].list!=undefined"> -->
           <div v-for="o in myTodayExpense.expensePerDay[0].list" :key=o.time class="text item">
-            <div style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
+            <div ><span><p>{{o.vendor}} ( {{o.time}} )</p></span><span style='color: #e31c1c;padding-left: 85%;'> {{'-'+o.amount}}</span></div>
           </div>
           <!-- </div> -->
 
@@ -38,7 +38,7 @@
             </div>
           <div v-if="myTodayIncome.incomesPerDay!=undefined&&myTodayIncome.incomesPerDay[0]!=undefined">
           <div v-for="o in myTodayIncome.incomesPerDay[0].list"  :key=o.time  class="text item">
-            <span style='display: flex;'><h5> {{o.vendor}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
+            <span style='display: flex;'><h5>{{o.vender}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
           </div>
           </div>
           
@@ -46,7 +46,7 @@
           </div>
       </el-col>
           
-      <el-col :span="14">
+      <el-col :span="14" >
           <div class="grid-content bg-purple">
         
             <img style="padding-bottom:90px;"  src="@/assets/img/ico_my_title2.png"> 
@@ -75,7 +75,7 @@ export default {
     PopoverRow,
   },
   methods:{
-      getAttributes() {
+     getAttributes() {
         var attributes=[];
       console.log(this.myMonthlyIncome)
 
@@ -125,8 +125,8 @@ export default {
       'myMonthlyIncome',
       'loginUser',
       'today'
-    ]),
-
+    ])
+    ,
     inputState() {
       if (!this.selectedValue) {
         return {
@@ -147,8 +147,6 @@ export default {
        checkList: ['소비','지출'],
        incomeCheck:true,
        expenseCheck:true
-  
-
     };
    },
     mounted() {
@@ -166,7 +164,6 @@ export default {
 <style lang="scss" scoped>
 
 .editor-container{
-
   margin-bottom: 30px;
 }
 .tag-title{

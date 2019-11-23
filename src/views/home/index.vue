@@ -5,7 +5,7 @@
         <div style="padding-left: 25px;">
          <!-- <img width="130px" style="padding-top: 15px;padding-bottom: 15px;" src='@/assets/img/member.png'> -->
        </div>
-      <el-card class="box-card">
+      <el-card class="box-card"     style="background-color: #f7f7f7;">
         <div slot="header" class="clearfix">
           <img src="@/assets/img/ico_home_title.png">
           <el-button @click="open2"  type="text" icon="el-icon-plus" 
@@ -43,8 +43,8 @@
 
           <el-card style="display: contents;" class="box-card">
             <div  style="display: flex; padding-top:30px">
-            <el-input placeholder="Please send Message" v-model="input"></el-input>
-            <el-button style="background-color: #5b7fde" type="info" >send</el-button>
+            <el-input v-on:click="trans" placeholder="Please send Message" v-model="input"></el-input>
+            <el-button  style="background-color: #5b7fde" type="info" >send</el-button>
             </div>
           </el-card>
 
@@ -87,14 +87,16 @@ export default {
     ])
   },
   methods: {
+      trans(){
+          this.$store.dispatch('homeTab/postFamilyChat',this.loginUser);
+      },
       open2() {
           this.$prompt('Please input your Family ID', 'Tip', {
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
             inputErrorMessage: 'Invalid userID'
           }).then(({ value }) => {
-             console.log("ㅁㅁ");
-           
+            
           }).catch(() => {
             this.$message({
               type: 'info',
@@ -136,7 +138,7 @@ export default {
     console.log(this.loginUser)
     this.$store.dispatch('homeTab/getFamilyBuget',this.loginUser.walletId);
     this.$store.dispatch('homeTab/getFamilyChat',this.loginUser.walletId);
-    
+    this.$store.dispatch('homeTab/postFamilyChat',this.loginUser);
   },
    data() {
     return {
@@ -158,6 +160,7 @@ export default {
 // }
  .container {
     // position: relative;
+    background-color:#F7F7F7;
     height: 100vh;
   }
   .text {
