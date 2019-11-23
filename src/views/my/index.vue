@@ -20,26 +20,34 @@
           <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
 
           <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span> {{myTodayExpense.totalExpense}}</span>
+            <div slot="header" class="clearfix" style="font-size:large; float:right;">
+                <span> {{myTodayExpense.totalExpense}}원</span>
                 <!-- <span>{{myTodayExpense.expensePerDay[0].list[0].vendor}}</span> -->
             </div>
           <div v-if="myTodayExpense.totalExpense!=0">
-          <div v-for="o in myTodayExpense.expensePerDay[0].list" :key=o.time class="text item">
-            <div ><span><p>{{o.vendor}} ( {{o.time}} )</p></span><span style='color: #e31c1c;padding-left: 85%;'> {{'-'+o.amount}}</span></div>
+          <div v-for="o in myTodayExpense.expensePerDay[0].list" :key=o.time class="text item" style="font-size:large">
+               
+            <div style="display:inline; line-height: 41px;">{{o.vendor}}</div> 
+            <div style="display:inline; line-height: 41px;">( {{o.time}} )</div>
+            <div style='color: #e31c1c;padding-left: 85%; displaly:inline; line-height: 41px;'> {{'-'+o.amount}}웜</div>
+          <div style="display:inline; float:right"> <el-button type="primary" icon="el-icon-share" :size=small  @click="sendChat(o.vendor,'-'+o.amount)" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
+          <div style="display:inline; float:right;"> <el-button type="primary" icon="el-icon-view" :size=small  @click="sendChat(o.vendor,'+'+o.amount)" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
           </div>
           </div>
-
+  
           </el-card>
             <img style="padding-bottom:20px;padding-top:40px;" src="@/assets/img/ico_my_sub2.png">
             </div>
-                <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span>{{myTodayIncome.totalIncome}}</span>
+          <el-card class="box-card">
+            <div slot="header" class="clearfix" style="font-size:large; float:right;">
+            {{myTodayIncome.totalIncome}}원
             </div>
           <div v-if="myTodayIncome.totalIncome!=0">
-          <div v-for="o in myTodayIncome.incomesPerDay[0].list"  :key=o.time  class="text item">
-            <span style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
+          <div v-for="o in myTodayIncome.incomesPerDay[0].list"  :key=o.time  class="text item" style="font-size:large" :bind="{ 'is-selected': status }">
+        <div style="display:inline; line-height: 41px;">{{o.vendor}}</div><div style='color: #1c21c0; display:inline; line-height: 41px;'>{{'+'+o.amount}}원</div>
+           <div style="display:inline; float:right"> <el-button type="primary" icon="el-icon-share" :size=small  @click="sendChat(o.vendor,'+'+o.amount)" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
+          <div style="display:inline; float:right;"> <el-button type="primary" icon="el-icon-view" :size=small  @click="!status" style="padding-left: 14px; padding-right: 14px; margin-right: 14px; padding-right:9px; padding-bottom:10px"></el-button></div>
+
           </div>
           </div>
           
@@ -49,9 +57,9 @@
           
       <el-col :span="14" >
           <div class="grid-content bg-purple">
-            <img style="padding-bottom:90px;"  src="@/assets/img/ico_my_title2.png"> 
-              <el-checkbox label="수입" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
-              <el-checkbox label="소비" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
+            <img style="padding-bottom:90px; display:flex;"  src="@/assets/img/ico_my_title2.png"> 
+              <el-checkbox label="소비" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
+              <el-checkbox label="수입" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
               <v-calendar is-expanded  :attributes="getAttributes()"/>
             </div>
             <img style="width: 100%;;padding-top: 90px;" src="@/assets/img/banner_my.png">
@@ -104,8 +112,13 @@ export default {
   //   };
   //  },
   methods:{
+    sendChat(vendor,amount){
+      var content='출처:'+vendor+' '
+      content+='액수:'+amount
+
+         this.$store.dispatch('homeTab/postFamilyChat',{loginUser: this.loginUser, input:content});
+    },
     shareData(){
-      console.log("jj")
       this.$store.dispatch('myTab/getShareMoney' ,{'loginUser': this.loginUser});
     },
      getAttributes() {
@@ -178,16 +191,17 @@ export default {
     return {
        checkList: ['소비','수입'],
        incomeCheck:true,
-       expenseCheck:true
+       expenseCheck:true,
+       status:false
     };
    },
     mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
 
-    this.$store.dispatch('myTab/getMyTodayExpense',{'loginUser': this.loginUser,'start':this.today,'end':'2019-11-24'});
-    this.$store.dispatch('myTab/getMyTodayIncome', {'loginUser': this.loginUser,'start':this.today,'end':'2019-11-24'});
-    this.$store.dispatch('myTab/getMyMonthlyIncome',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
-    this.$store.dispatch('myTab/getMonthlyExpense',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
+    this.$store.dispatch('myTab/getMyTodayExpense',{'loginUser': this.loginUser,'start':this.today,'end':'2019-11-25'});
+    this.$store.dispatch('myTab/getMyTodayIncome', {'loginUser': this.loginUser,'start':this.today,'end':'2019-11-25'});
+    this.$store.dispatch('myTab/getMyMonthlyIncome',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-25'});
+    this.$store.dispatch('myTab/getMonthlyExpense',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-25'});
 
   }
 }
@@ -237,5 +251,8 @@ export default {
   .clearfix:after {
     clear: both
   }
+  .is-selected {
+    text-decoration: line-through;
+}
 
 </style>
