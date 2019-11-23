@@ -21,6 +21,7 @@
           <el-card class="box-card">
             <div slot="header" class="clearfix">
                 <span> {{myTodayExpense.totalExpense}}</span>
+                <span>{{myTodayExpense.expensePerDay[0].detail[0].vendor}}</span>
             </div>
           <div v-for="o in myTodayExpense.expensePerDay[0].detail" :key=o.time class="text item">
             <div style='display: flex;'><h5>{{o.vendor}}</h5><h4 style='color: #e31c1c;'>{{'-'+o.amount}}</h4></div>
@@ -70,7 +71,7 @@ export default {
   methods:{
       getAttributes() {
         var attributes=[];
-      //console.log(this.myMonthlyExpense.totalExpense)
+      console.log(this.myTodayExpense.expensePerDay[0])
 
     if(this.expenseCheck){
       for(var value of this.myMonthlyExpense.expensePerDay) {
