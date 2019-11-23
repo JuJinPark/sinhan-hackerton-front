@@ -12,7 +12,8 @@
            <img src="@/assets/img/ico_my_title1.png">
           </div>    
 
-          <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
+          <!-- <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>    -->
+           <el-button style="float: right;" @click="shareData()" type="warning">공유하기</el-button>
           </div>
 
           <div>
@@ -48,12 +49,9 @@
           
       <el-col :span="14" >
           <div class="grid-content bg-purple">
-        
             <img style="padding-bottom:90px;"  src="@/assets/img/ico_my_title2.png"> 
-            
               <el-checkbox label="지출" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
               <el-checkbox label="소비" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
-             
               <v-calendar is-expanded  :attributes="getAttributes()"/>
             </div>
             <img style="width: 100%;;padding-top: 90px;" src="@/assets/img/banner_my.png">
@@ -67,6 +65,7 @@
 <script>
 
 import { mapGetters } from 'vuex'
+import Axios from 'axios';
 
 
 export default {
@@ -102,11 +101,13 @@ export default {
        checkList: ['소비','지출'],
        incomeCheck:true,
        expenseCheck:true
-  
-
     };
    },
   methods:{
+    shareData(){
+      console.log("jj")
+      this.$store.dispatch('myTab/getShareMoney' ,{'loginUser': this.loginUser});
+    },
      getAttributes() {
         var attributes=[];
       console.log(this.myMonthlyIncome)
