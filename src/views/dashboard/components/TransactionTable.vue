@@ -1,19 +1,24 @@
 <template>
-  <el-table :data="list" style="width: 100%;padding-top: 15px;">
+  <el-table :data="incomeList" style="width: 100%;padding-top: 15px;">
+    <el-table-column label="이름" min-width="200">
+      <template slot-scope="scope">
+        {{ scope.row.userName | orderNoFilter }}
+      </template>
+    </el-table-column>
     <el-table-column label="거래내역" min-width="200">
       <template slot-scope="scope">
-        {{ scope.row.order_no | orderNoFilter }}
+        {{ scope.row.vendor | orderNoFilter }}
       </template>
     </el-table-column>
     <el-table-column label="수입금액" width="195" align="center">
       <template slot-scope="scope">
-        ¥{{ scope.row.price | toThousandFilter }}
+        ¥{{ scope.row.amount | toThousandFilter }}
       </template>
     </el-table-column>
     <el-table-column label="날짜" width="100" align="center">
       <template slot-scope="{row}">
-        <el-tag :type="row.status | statusFilter">
-          {{ row.status }}
+        <el-tag :type="row.date | statusFilter">
+          {{ row.date }}
         </el-tag>
       </template>
     </el-table-column>
@@ -21,7 +26,7 @@
 </template>
 
 <script>
-import { transactionList } from '@/api/remote-search'
+import { mapGetters } from 'vuex'
 
 export default {
   filters: {
@@ -41,14 +46,17 @@ export default {
       list: null
     }
   },
+  computed: {
+    ...mapGetters([
+      'incomeList'
+    ])
+  },
   created() {
     this.fetchData()
   },
   methods: {
     fetchData() {
-      transactionList().then(response => {
-        this.list = response.data.items.slice(0, 8)
-      })
+      this.$store.dispatch('dashboadTab/getIncomeList', '1')
     }
   }
 }
