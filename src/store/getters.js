@@ -14,6 +14,8 @@ const getters = {
   incomeList: state => state.dashboadTab.incomeList,
   monthlyExpenses: state => state.dashboadTab.monthlyExpenses,
   loginUser: state => state.user.loginUser,
-  today: state => state.user.today
+  today: state => state.user.today,
+  familyMonthlyExpense: state => state.familyTab.familyMonthlyExpense,
+  familyMonthlyIncome: state => state.familyTab.familyMonthlyIncome
 }
 export default getters

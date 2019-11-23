@@ -23,11 +23,11 @@
                 <span> {{myTodayExpense.totalExpense}}</span>
                 <!-- <span>{{myTodayExpense.expensePerDay[0].list[0].vendor}}</span> -->
             </div>
-          <!-- <div v-if="myTodayExpense.expensePerDay[0]=!undefined&&myTodayExpense.expensePerDay[0].list!=undefined"> -->
+          <div v-if="myTodayExpense.totalExpense!=0">
           <div v-for="o in myTodayExpense.expensePerDay[0].list" :key=o.time class="text item">
             <div ><span><p>{{o.vendor}} ( {{o.time}} )</p></span><span style='color: #e31c1c;padding-left: 85%;'> {{'-'+o.amount}}</span></div>
           </div>
-          <!-- </div> -->
+          </div>
 
           </el-card>
             <img style="padding-bottom:20px;padding-top:40px;" src="@/assets/img/ico_my_sub2.png">
@@ -36,7 +36,7 @@
             <div slot="header" class="clearfix">
                 <span>{{myTodayIncome.totalIncome}}</span>
             </div>
-          <div v-if="myTodayIncome.incomesPerDay!=undefined&&myTodayIncome.incomesPerDay[0]!=undefined">
+          <div v-if="myTodayIncome.totalIncome!=0">
           <div v-for="o in myTodayIncome.incomesPerDay[0].list"  :key=o.time  class="text item">
             <span style='display: flex;'><h5>{{o.vender}}</h5><h4 style='color: #1c21c0;'>{{'+'+o.amount}}</h4></span>
           </div>
@@ -67,13 +67,45 @@
 <script>
 
 import { mapGetters } from 'vuex'
-import PopoverRow from 'v-calendar/lib/components/popover-row.umd.min'
+
 
 export default {
   name: 'My',
-  components: {
-    PopoverRow,
+   computed: {
+    ...mapGetters([
+      'myTodayExpense',
+      'myTodayIncome',
+      'myMonthlyExpense',
+      'myMonthlyIncome',
+      'loginUser',
+      'today'
+    ]),
+
+    inputState() {
+      if (!this.selectedValue) {
+        return {
+          type: 'is-danger',
+          message: 'Date required.',
+        };
+      }
+      return {
+        type: 'is-primary',
+        message: '',
+      };
+    },
+
+   
   },
+   data() {
+    return {
+     
+       checkList: ['소비','지출'],
+       incomeCheck:true,
+       expenseCheck:true
+  
+
+    };
+   },
   methods:{
      getAttributes() {
         var attributes=[];

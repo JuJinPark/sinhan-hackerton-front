@@ -7,6 +7,7 @@ import user from './modules/user'
 import homeTab from './modules/homeTab'
 import myTab from './modules/myTab'
 import dashboadTab from './modules/dashboardTab'
+import familyTab from './modules/familyTab'
 
 
 Vue.use(Vuex)
@@ -18,7 +19,8 @@ const store = new Vuex.Store({
     user,
     homeTab,
     myTab,
-    dashboadTab
+    dashboadTab,
+    familyTab
   },
   getters
 })
