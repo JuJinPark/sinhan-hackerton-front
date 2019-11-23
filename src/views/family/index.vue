@@ -85,7 +85,7 @@ export default {
       'walletUsers',
       'familyDailyExpense',
       'familyDailyIncome'
-      // 'dailyExpense'
+   
 
     ]),   
   dailyExpense() {
@@ -112,11 +112,19 @@ export default {
 
   
    this.walletUsers.forEach(member => {  
-     member.amount=amount[member.id]
-     array.push(member)     
+     let json={}
+     json.id=member.id
+     json.name=member.name
+     json.amount=amount[member.id]
+    //  member.amount
+     array.push(json)     
    
    }
    );
+
+   console.log("---bug")
+console.log(array)
+   console.log("---bug")
 
   return array;  
 
@@ -147,9 +155,13 @@ export default {
 
   
    this.walletUsers.forEach(member => {  
-     member.amount=amount[member.id]
-     array.push(member)     
-   
+    //  member.amount=amount[member.id]
+    //  array.push(member)     
+     let json={}
+     json.id=member.id
+     json.name=member.name
+     json.amount=amount[member.id]
+     array.push(json)     
    }
    );
 

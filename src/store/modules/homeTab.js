@@ -8,16 +8,19 @@ chatMessage:[]
 const mutations = {
 
   UPDATE_FAMILYBUDGET: (state, familyBudget) => {
+    console.log("bbudget")
     state.familyBudget = familyBudget
   },
    
   UPDATE_FAMILYCHAT: (state, chatMessage) => {
+
     state.chatMessage = chatMessage;
   }
 }
 //액션을 통해 커밋으로 뮤테이션에 하는것에 의해서 값을 변경시킨다. 
 const actions = {
   getFamilyBuget({commit},walletId) {
+
     axios.get('/wallets/'+walletId+'/_budget')
     .then(response => {
       commit("UPDATE_FAMILYBUDGET",response.data);
@@ -38,9 +41,13 @@ const actions = {
       commit("UPDATE_FAMILYCHAT",response.data);
     })
   },
-  inviteUser({ commit },info) {
+  inviteUser({ commit ,dispatch },info) {
     axios.put('/wallets/'+info.loginUser.walletId+'/users/'+info.value)
-    .then(response => console.log(response))
+    .then(response => {console.log(response)
+   
+        dispatch('getFamilyBuget',info.loginUser.walletId);
+    
+     } )
   }
 }
 export default {
