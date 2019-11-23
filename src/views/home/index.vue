@@ -42,9 +42,9 @@
 <!----------------------입력부분------------------------------------------------------------------------------------>  
 
           <el-card style="display: contents;" class="box-card">
-            <div  style="display: flex; padding-top:30px">
+            <div  style="display: flex; padding-top:30px" @keyup.enter="trans">
             <el-input placeholder="Please send Message" v-model="input"></el-input>
-            <el-button v-on:click="trans" style="background-color: #5b7fde" type="info" >send</el-button>
+            <el-button v-on:click="trans" style="background-color: #5b7fde" type="info">send</el-button>
             </div>
           </el-card>
 
@@ -88,7 +88,10 @@ export default {
   },
   methods: {
       trans(){
-          this.$store.dispatch('homeTab/postFamilyChat',{loginUser: this.loginUser, input: this.input});
+          if(this.input.length != 0) { 
+            this.$store.dispatch('homeTab/postFamilyChat',{loginUser: this.loginUser, input: this.input});
+            this.input = "";
+          }
       },
       open2() {
           this.$prompt('Please input your Family ID', 'Tip', {
