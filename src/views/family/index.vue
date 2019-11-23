@@ -212,11 +212,11 @@ export default {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
 console.log("mounted")
     this.$store.dispatch('familyTab/getWalletUsers',this.loginUser);
-    this.$store.dispatch('familyTab/getDailyFamilyExpense',{'loginUser':this.loginUser,'start':'2019-11-23','end':'2019-11-24'});
-    this.$store.dispatch('familyTab/getDailyFamilyIncome',{'loginUser':this.loginUser,'start':'2019-11-23','end':'2019-11-24'});
+    this.$store.dispatch('familyTab/getDailyFamilyExpense',{'loginUser':this.loginUser,'start':'2019-11-24','end':'2019-11-25'});
+    this.$store.dispatch('familyTab/getDailyFamilyIncome',{'loginUser':this.loginUser,'start':'2019-11-24','end':'2019-11-25'});
 
-    this.$store.dispatch('familyTab/getFamilyMonthlyExpense',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
-    this.$store.dispatch('familyTab/getFamilyMonthlyIncome',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
+    this.$store.dispatch('familyTab/getFamilyMonthlyExpense',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-25'});
+    this.$store.dispatch('familyTab/getFamilyMonthlyIncome',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-25'});
 
   },
 
