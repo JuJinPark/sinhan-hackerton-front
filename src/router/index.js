@@ -138,13 +138,9 @@ export const constantRoutes = [
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: '노후관리 서비스',
         meta: { title: '노후관리 서비스' }
-      }, {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: '그룹 가계부 ' }
-      },
+      }, 
       {
-        path: 'menu3',
+        path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
         meta: { title: '아이 용돈관리서비스' }
       }

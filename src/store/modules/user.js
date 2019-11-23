@@ -44,10 +44,10 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
 
-      axios.post('/login/'+walletId+'/_budget')
-      .then(response => {
-        commit("UPDATE_FAMILYBUDGET",response.data);
-      })
+      // axios.post('/login/'+walletId+'/_budget')
+      // .then(response => {
+      //   commit("UPDATE_FAMILYBUDGET",response.data);
+      // })
 
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
