@@ -116,7 +116,9 @@ export default {
       'myTodayExpense',
       'myTodayIncome',
       'myMonthlyExpense',
-      'myMonthlyIncome'
+      'myMonthlyIncome',
+      'loginUser',
+      'today'
     ]),
 
     inputState() {
@@ -145,8 +147,9 @@ export default {
    },
     mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
+    console.log(this.today+"--")
     this.$store.dispatch('myTab/getMyTodayExpense');
-    this.$store.dispatch('myTab/getMyTodayIncome');
+    this.$store.dispatch('myTab/getMyTodayIncome', {'loginUser': this.loginUser, 'start':this.today,'end':this.today});
     this.$store.dispatch('myTab/getMyMonthlyIncome');
     this.$store.dispatch('myTab/getMonthlyExpense');
 
