@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div style="background-color:#f7f7f7;" class="dashboard-container">
     <div>
      <el-row :gutter="23" class="container">
       <el-col :span="10">
@@ -8,21 +8,21 @@
     <div style="display:inline-block;">
       <img  src="@/assets/img/ico_my_title1.png">
     </div>    
-      <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>   
+      <!-- <i class="el-icon-refresh" style="float:right; font-size: 2rem;"/>    -->
     </div>
     <div> 
       <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
-      <el-card s class="box-card">
+      <el-card style="text-align: end;" class="box-card">
         <div slot="header" class="clearfix" >
-          <div><h3>Total : {{familyDailyExpense.totalExpense}}</h3> </div>   
+          <div><h3> {{familyDailyExpense.totalExpense}}원</h3> </div>   
         </div>
    <div v-if="familyDailyExpense.totalExpense!=0">
     <div v-for="o in dailyExpense" :key="o.id" class="text item" style=" display: flex;">
           <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
-        <span style=" display: flex;padding-bottom: 21px;" ><img :src="require('@/assets/img/'+o.userId+'.png')" style="width:54px">
-          <h4>{{o.name}}</h4>
-        </span>
-        <span><h3>{{o.amount}}</h3></span>
+        <div style=" display: flex;padding-bottom: 21px;" ><img :src="require('@/assets/img/'+o.id+'.png')" style="width:54px">
+          <div style="padding-top: 18px; padding-left: 20px;">{{o.name}}</div>
+        </div>
+         <div style=" padding-left: 20px;"><h3>{{o.amount}}원</h3></div>
     </div>
    </div>
     </el-card>
@@ -31,7 +31,7 @@
       </div>
           <el-card class="box-card">
       <div slot="header" class="clearfix">
-           <div style="text-align: end"><h3>Total : {{familyDailyIncome.totalIncome}}</h3> </div>        
+           <div style="text-align: end"><h3> {{familyDailyIncome.totalIncome}}원</h3> </div>        
       </div>
       <!-- <div  v-for="o in 4" :key="o" class="text item">
          {{'List item ' + o }}    <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>  
@@ -39,10 +39,10 @@
         <div v-if="familyDailyIncome.totalIncome!=0">
       <div v-for="o in dailyIncome" :key="o.id" class="text item" style=" display: flex;">
           <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
-        <span style=" display: flex;padding-bottom: 21px;" ><img :src="require('@/assets/img/'+o.userId+'.png')" style="width:54px">
-          <h4>{{o.name}}</h4>
-        </span>
-        <span><h3>{{o.amount}}</h3></span>
+        <div style=" display: flex;padding-bottom: 21px;" ><img :src="require('@/assets/img/'+o.id+'.png')" style="width:54px">
+          <div style="padding-top: 18px; padding-left: 20px;">{{o.name}}</div>
+        </div>
+      <div style=" padding-left: 20px;"><h3>{{o.amount}}원</h3></div>
     </div>
         </div>
     </el-card>
@@ -52,12 +52,15 @@
       <div class="grid-content bg-purple">  
         <img style="padding-bottom:90px;" src="@/assets/img/ico_my_title2.png">
           <div style="float: right;">
+            <img style="width:60px" src="@/assets/img/test1.png">
+            <img style="width:60px" src="@/assets/img/test2.png">
+            <img style="width:60px" src="@/assets/img/test3.png">
             <img style="width:60px" src="@/assets/img/test4.png">
          </div>
   
    
-         <el-checkbox label="지출" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
-         <el-checkbox label="소비" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
+         <el-checkbox label="소비" v-model="expenseCheck" :change="getAttributes()"></el-checkbox>
+         <el-checkbox label="수입" v-model="incomeCheck" :change="getAttributes()"></el-checkbox>
              
         <v-calendar is-expanded  :attributes="getAttributes()"/>
       </div>
