@@ -16,6 +16,9 @@ const getters = {
   loginUser: state => state.user.loginUser,
   today: state => state.user.today,
   familyMonthlyExpense: state => state.familyTab.familyMonthlyExpense,
-  familyMonthlyIncome: state => state.familyTab.familyMonthlyIncome
+  familyMonthlyIncome: state => state.familyTab.familyMonthlyIncome,
+  walletUsers : state => state.familyTab.walletUsers,
+  familyDailyExpense: state => state.familyTab.familyDailyExpense,
+  familyDailyIncome: state => state.familyTab.familyDailyIncome
 }
 export default getters
