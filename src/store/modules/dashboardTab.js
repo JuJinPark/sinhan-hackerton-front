@@ -34,7 +34,7 @@ const actions = {
   },
   getIncomeList({ commit }, walletId) {
     var date = new Date()
-    axios.get('wallets/' + walletId + '/incomes/_simple', {
+    axios.get('wallets/' + walletId + '/incomes/_list', {
       params: {
         size: 1000,
         start: new Date(date.getFullYear(), date.getMonth(), 1),
