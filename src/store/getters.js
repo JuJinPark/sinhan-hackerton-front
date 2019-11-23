@@ -9,6 +9,8 @@ const getters = {
   myTodayExpense: state => state.myTab.myTodayExpense,
   myTodayIncome: state => state.myTab.myTodayIncome,
   myMonthlyExpense: state => state.myTab.myMonthlyExpense,
-  myMonthlyIncome: state => state.myTab.myMonthlyIncome
+  myMonthlyIncome: state => state.myTab.myMonthlyIncome,
+  loginUser: state => state.user.loginUser,
+  today: state => state.user.today,
 }
 export default getters

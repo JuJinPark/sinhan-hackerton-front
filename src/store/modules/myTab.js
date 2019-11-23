@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 //글로벌 변수 
 const state = {
   myTodayExpense:{},
@@ -30,9 +30,9 @@ const mutations = {
 }
 //액션을 통해 커밋으로 뮤테이션에 하는것에 의해서 값을 변경시킨다. 
 const actions = {
-  getMyTodayExpense({ commit },roomId) {
+  getMyTodayExpense({ commit },userId) {
   
-    // axios.post('/seats',roomId)
+    // axios.get('/seats',roomId)
     // .then(response => {
     //   commit("UPDATE_FAMILYBUDGET",response.data);
     // })
@@ -75,42 +75,44 @@ const actions = {
 
   },
 
-  getMyTodayIncome({ commit },roomId) {
-      
-    // axios.post('/seats',roomId)
-    // .then(response => {
-    //   commit("UPDATE_FAMILYBUDGET",response.data);
-    // })
-     var response={};
-     response.data=[];
-     console.log(response.data)
-    response.data={
-      totalIncome:104120,
-      incomePerDay:
-      [
-      { 
-        date:'2019-11-14',
-       amount: 10400,
-       detail:[{ 
-          time:'2019-11-14:09:00:00',
-          vendor:'월급',
-          amount:'5000'
-        },
-         { 
-          time:'2019-11-14:10:00:00',
-          vendor:'엄마',
-          amount:'2000'
-        },
-         { 
-          time:'2019-11-14:11:00:00',
-          vendor:'친구점심더치페이',
-          amount:'3400'
-        }]
-      }
-      ]
-    }
+  getMyTodayIncome({commit,state },payload) {
+    console.log("--")
+    console.log(payload)
+    
+    axios.get('/users/'+payload.loginUser.id+'/incomes?start='+payload.start+'&end='+payload.end+'&size=5')
+    .then(response => {
+      commit("UPDATE_MYTODAYINCOME",response.data);
+    })
+    //  var response={};
+    //  response.data=[];
+    //  console.log(response.data)
+    // response.data={
+    //   totalIncome:104120,
+    //   incomePerDay:
+    //   [
+    //   { 
+    //     date:'2019-11-14',
+    //    amount: 10400,
+    //    detail:[{ 
+    //       time:'2019-11-14:09:00:00',
+    //       vendor:'월급',
+    //       amount:'5000'
+    //     },
+    //      { 
+    //       time:'2019-11-14:10:00:00',
+    //       vendor:'엄마',
+    //       amount:'2000'
+    //     },
+    //      { 
+    //       time:'2019-11-14:11:00:00',
+    //       vendor:'친구점심더치페이',
+    //       amount:'3400'
+    //     }]
+    //   }
+    //   ]
+    // }
   
-    commit("UPDATE_MYTODAYINCOME",response.data);
+    // commit("UPDATE_MYTODAYINCOME",response.data);
 
   },
 
