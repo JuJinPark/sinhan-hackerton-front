@@ -13,25 +13,38 @@
     <div> 
       <img style="padding-bottom:20px;" src="@/assets/img/ico_my_sub1.png">
       <el-card s class="box-card">
-        <div  slot="header" class="clearfix" >
-          <div ><h3>Total : 1000000</h3> </div>   
+        <div slot="header" class="clearfix" >
+          <div><h3>Total : {{familyDailyExpense.totalExpense}}</h3> </div>   
         </div>
-    <div v-for="o in 4" :key="o" class="text item" style=" display: flex;">
+   <div v-if="familyDailyExpense.totalExpense!=0">
+    <div v-for="o in dailyExpense" :key="o.id" class="text item" style=" display: flex;">
           <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
-        <span style=" display: flex;padding-bottom: 21px;" ><img src="@/assets/img/male.png" style="width:54px"><h4>userName</h4></span>
-        <span><h3> 오늘 쓴 돈</h3></span>
+        <span style=" display: flex;padding-bottom: 21px;" ><img src="@/assets/img/male.png" style="width:54px">
+          <h4>{{o.name}}</h4>
+        </span>
+        <span><h3>{{o.amount}}</h3></span>
     </div>
+   </div>
     </el-card>
       <img style="padding-bottom:20px;padding-top:40px;" src="@/assets/img/ico_my_sub2.png">
       
       </div>
           <el-card class="box-card">
       <div slot="header" class="clearfix">
-           <div style="text-align: end"><span >3,500,000</span> </div>        
+           <div style="text-align: end"><h3>Total : {{familyDailyIncome.totalIncome}}</h3> </div>        
       </div>
       <!-- <div  v-for="o in 4" :key="o" class="text item">
          {{'List item ' + o }}    <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span>  
       </div> -->
+        <div v-if="familyDailyIncome.totalIncome!=0">
+      <div v-for="o in dailyIncome" :key="o.id" class="text item" style=" display: flex;">
+          <!-- {{'List item ' + o }} <span style="color: #6479e7;font-size: 13px;float: right;">가족에게 보내기</span> -->
+        <span style=" display: flex;padding-bottom: 21px;" ><img src="@/assets/img/male.png" style="width:54px">
+          <h4>{{o.name}}</h4>
+        </span>
+        <span><h3>{{o.amount}}</h3></span>
+    </div>
+        </div>
     </el-card>
     </div>
     </el-col>
@@ -69,42 +82,82 @@ export default {
       'familyMonthlyExpense',
       'familyMonthlyIncome',
       'loginUser',
-      'wallerUsers',
-      'familyDailyExpense'
+      'walletUsers',
+      'familyDailyExpense',
+      'familyDailyIncome'
+      // 'dailyExpense'
 
-    ]), 
-  },
-  
-  
-  familyDailyExpense(){
-    let data=[];
+    ]),   
+  dailyExpense() {
+    let array=[];
+    let amount={}
 
-   this.wallerUsers.forEach(member => {
-     let json={}
+   this.walletUsers.forEach(member => {    
+          
+    amount[member.id]=0;  
+
+    });
+
+
+    this.familyDailyExpense.expensePerDay[0].list.forEach(member => {
      
-     json.id=member.id
-     json.name=member.name;
-     json.gender=member.gender;
-     json.age=member.age;
-     json.amount=0
-     data.push(json)
+   
 
+    let current=amount[member.userId]
+    amount[member.userId]=current+member.amount
+
+   } ) 
+
+
+
+  
+   this.walletUsers.forEach(member => {  
+     member.amount=amount[member.id]
+     array.push(member)     
+   
    }
    );
 
-  if(this.familyDailyExpense.amount!=0){
+  return array;  
 
-    this.familyDailyExpense.list.forEach(member => {
-     data[member.userId]
 
+  },
+  dailyIncome(){
+    let array=[];
+    let amount={}
+
+   this.walletUsers.forEach(member => {    
+          
+    amount[member.id]=0;  
+
+    });
+
+    console.log('income')
+    console.log(this.familyDailyIncome.incomesPerDay)
+    this.familyDailyIncome.incomesPerDay[0].list.forEach(member => {
+     
+   
+
+    let current=amount[member.userId]
+    amount[member.userId]=current+member.amount
+
+   } ) 
+
+
+
+  
+   this.walletUsers.forEach(member => {  
+     member.amount=amount[member.id]
+     array.push(member)     
+   
    }
    );
 
+  return array; 
   }
+ 
+  },
 
-
-  }
-  ,
   data() {
       return {
         incomeCheck:true,
@@ -112,9 +165,10 @@ export default {
       }
     },
   methods:{
+  
       getAttributes() {
         var attributes=[];
-   
+ 
 
     if(this.expenseCheck&&this.familyMonthlyExpense!=undefined){
       for(var value of this.familyMonthlyExpense) {
@@ -157,8 +211,9 @@ export default {
   mounted() {
     //액션을 실행시키는 것이다. 디스패치가 액션을 발생시킨다. 
 console.log("mounted")
-    this.$store.dispatch('familyTab/getMyTodayExpense',{'loginUser': this.loginUser,'start':this.today,'end':'2019-11-24'});
-    this.$store.dispatch('familyTab/getMyTodayIncome', {'loginUser': this.loginUser,'start':this.today,'end':'2019-11-24'});
+    this.$store.dispatch('familyTab/getWalletUsers',this.loginUser);
+    this.$store.dispatch('familyTab/getDailyFamilyExpense',{'loginUser':this.loginUser,'start':'2019-11-23','end':'2019-11-24'});
+    this.$store.dispatch('familyTab/getDailyFamilyIncome',{'loginUser':this.loginUser,'start':'2019-11-23','end':'2019-11-24'});
 
     this.$store.dispatch('familyTab/getFamilyMonthlyExpense',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});
     this.$store.dispatch('familyTab/getFamilyMonthlyIncome',{'loginUser': this.loginUser,'start':'2019-01-01','end':'2019-11-24'});

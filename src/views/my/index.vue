@@ -109,7 +109,7 @@ export default {
   methods:{
      getAttributes() {
         var attributes=[];
-      console.log(this.myMonthlyIncome)
+      // console.log(this.myMonthlyIncome)
 
     if(this.expenseCheck&&this.myMonthlyExpense!=undefined){
       for(var value of this.myMonthlyExpense) {
